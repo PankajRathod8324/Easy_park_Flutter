@@ -24,7 +24,7 @@ class _TipRequestViewState extends State<TipRequestView> with OSMMixinObserver {
     super.initState();
     controller = MapController(
       initPosition:
-          GeoPoint(latitude: 23.02756018230479, longitude: 72.58131973941731),
+          GeoPoint(latitude: 22.6916018230479, longitude: 72.8634973941731),
     );
 
     controller.addObserver(this);
@@ -353,11 +353,11 @@ class _TipRequestViewState extends State<TipRequestView> with OSMMixinObserver {
     //23.02726396414328, 72.5851928489523
 
     await controller.setStaticPosition(
-        [GeoPoint(latitude: 23.02756018230479, longitude: 72.58131973941731)],
+        [GeoPoint(latitude: 22.6916018230479, longitude: 72.8634973941731)],
         "pickup");
 
     await controller.setStaticPosition(
-        [GeoPoint(latitude: 23.02726396414328, longitude: 72.5851928489523)],
+        [GeoPoint(latitude: 22.6916018230479, longitude: 72.7634973941731)],
         "dropoff");
 
     loadMapRoad();
@@ -365,8 +365,8 @@ class _TipRequestViewState extends State<TipRequestView> with OSMMixinObserver {
 
   void loadMapRoad() async {
     await controller.drawRoad(
-        GeoPoint(latitude: 23.02756018230479, longitude: 72.58131973941731),
-        GeoPoint(latitude: 23.02726396414328, longitude: 72.5851928489523),
+        GeoPoint(latitude: 22.6916018230479, longitude: 72.8634973941731),
+        GeoPoint(latitude: 22.6916018230479, longitude: 72.7634973941731),
         roadType: RoadType.car,
         roadOption:
             const RoadOption(roadColor: Colors.blueAccent, roadBorderWidth: 3));

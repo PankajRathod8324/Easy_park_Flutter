@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:math';
 
 import 'package:easy_park_app/view/home/full_details.dart';
-import 'package:easy_park_app/view/home/half_details.dart';
 import 'package:easy_park_app/view/menu/menu_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -25,19 +24,19 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.green,
       ),
-      home: const HomeView(),
+      home: const HalfDetailsView(),
     );
   }
 }
 
-class HomeView extends StatefulWidget {
-  const HomeView({Key? key}) : super(key: key);
+class HalfDetailsView extends StatefulWidget {
+  const HalfDetailsView({Key? key}) : super(key: key);
 
   @override
-  State<HomeView> createState() => _HomeViewState();
+  State<HalfDetailsView> createState() => _HalfDetailsViewState();
 }
 
-class _HomeViewState extends State<HomeView> {
+class _HalfDetailsViewState extends State<HalfDetailsView> {
   int selected = 0;
   final controller = PageController();
 
@@ -148,7 +147,7 @@ class _HomeViewState extends State<HomeView> {
         // Handle the tap on the user's location marker (markerId 'SomeId')
         // You can replace the following line with your navigation logic
         Navigator.of(context)
-            .push(MaterialPageRoute(builder: (context) => FullDetailsScreen()));
+            .push(MaterialPageRoute(builder: (context) => MenuView()));
       } else {
         // Clear existing polyline
         polylineCoordinates.clear();
@@ -224,6 +223,70 @@ class _HomeViewState extends State<HomeView> {
               ],
             ),
           ),
+          // Half detail screen
+          Positioned(
+            bottom: 0,
+            left: 0,
+            right: 0,
+            child: Container(
+              height: MediaQuery.of(context).size.height * 0.5,
+              padding: const EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.vertical(top: Radius.circular(40)),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.5),
+                    spreadRadius: 5,
+                    blurRadius: 7,
+                    offset: Offset(0, 3),
+                  ),
+                ],
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  // Image
+                  Container(
+                    width: double.infinity,
+                    height: MediaQuery.of(context).size.height * 0.3,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      image: DecorationImage(
+                        image: AssetImage("assets/img/deatils.png"),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
+                  // Spacer
+                  SizedBox(height: 16),
+                  // Cancel and Details buttons
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      ElevatedButton(
+                        onPressed: () {
+                          // Handle cancel button press
+                          Navigator.of(context)
+                              .pop(); // This will pop the HalfDetailsView page, bringing you back to the previous page (Home in this case)
+                        },
+                        child: Text('Cancel'),
+                      ),
+                      ElevatedButton(
+                        onPressed: () {
+                          // Handle details button press
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => FullDetailsScreen()));
+                        },
+                        child: Text('Details'),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ),
+          // SafeArea, Row, and Stack widgets remain unchanged
           SafeArea(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,

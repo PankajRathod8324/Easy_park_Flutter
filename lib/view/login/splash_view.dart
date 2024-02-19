@@ -26,7 +26,7 @@ class _SplashViewState extends State<SplashView> {
   }
 
   void loadNextScreen() {
-    context.push(const ChangeLanguageView());
+    context.push(const HomeView());
   }
 
   @override
