@@ -1,7 +1,8 @@
 import 'package:easy_park_app/common/color_extension.dart';
 import 'package:easy_park_app/common_widget/line_text_field.dart';
 import 'package:easy_park_app/common_widget/round_button.dart';
-import 'package:easy_park_app/view/login/bank_detail_view.dart';
+import 'package:easy_park_app/view/login/add_vehicle_view.dart';
+import 'package:easy_park_app/view/login/profile_image_view.dart';
 import 'package:fl_country_code_picker/fl_country_code_picker.dart';
 import 'package:flutter/material.dart';
 
@@ -197,7 +198,7 @@ class _SignUpViewState extends State<SignUpView> {
               ),
               RoundButton(
                 onPressed: () {
-                  context.push(const BankDetailView());
+                  context.push(const ProfileImageView());
                 },
                 title: "REGISTER",
               ),

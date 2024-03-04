@@ -1,5 +1,6 @@
 import 'package:easy_park_app/common/color_extension.dart';
 import 'package:easy_park_app/view/login/splash_view.dart';
+import 'package:easy_park_app/view/login/splash_view_1.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

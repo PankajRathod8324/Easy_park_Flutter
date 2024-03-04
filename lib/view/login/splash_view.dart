@@ -1,6 +1,5 @@
 import 'package:easy_park_app/common/color_extension.dart';
-import 'package:easy_park_app/view/home/home_view.dart';
-import 'package:easy_park_app/view/login/change_language_view.dart';
+import 'package:easy_park_app/view/login/splash_view_3.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -26,7 +25,7 @@ class _SplashViewState extends State<SplashView> {
   }
 
   void loadNextScreen() {
-    context.push(const HomeView());
+    context.push(const SplashView3Screen());
   }
 
   @override
@@ -42,8 +41,8 @@ class _SplashViewState extends State<SplashView> {
             color: TColor.primary,
           ),
           Image.asset(
-            "assets/img/app_logo.png",
-            width: context.width * 0.25,
+            "assets/img/img_image_2.png",
+            width: context.width * 0.75,
           )
         ],
       ),

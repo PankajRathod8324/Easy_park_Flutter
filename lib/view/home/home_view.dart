@@ -1,8 +1,10 @@
 import 'dart:async';
 import 'dart:math';
 
+import 'package:easy_park_app/common/color_extension.dart';
 import 'package:easy_park_app/view/home/full_details.dart';
 import 'package:easy_park_app/view/home/half_details.dart';
+import 'package:easy_park_app/view/home/vehicle.dart';
 import 'package:easy_park_app/view/menu/menu_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -148,7 +150,7 @@ class _HomeViewState extends State<HomeView> {
         // Handle the tap on the user's location marker (markerId 'SomeId')
         // You can replace the following line with your navigation logic
         Navigator.of(context)
-            .push(MaterialPageRoute(builder: (context) => FullDetailsScreen()));
+            .push(MaterialPageRoute(builder: (context) => HalfDetailsView()));
       } else {
         // Clear existing polyline
         polylineCoordinates.clear();
@@ -276,7 +278,7 @@ class _HomeViewState extends State<HomeView> {
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: selected,
         unselectedItemColor: Color.fromARGB(255, 0, 0, 0),
-        selectedItemColor: Colors.green,
+        selectedItemColor: TColor.primary,
         items: [
           BottomNavigationBarItem(
               icon: Icon(Icons.house_outlined), label: 'Home'),

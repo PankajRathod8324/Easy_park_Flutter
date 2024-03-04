@@ -5,7 +5,6 @@ import 'package:easy_park_app/view/login/sign_up_view.dart';
 import 'package:fl_country_code_picker/fl_country_code_picker.dart';
 import 'package:flutter/material.dart';
 
-
 class SignInView extends StatefulWidget {
   const SignInView({super.key});
 
@@ -111,19 +110,25 @@ class _SignInViewState extends State<SignInView> {
             const SizedBox(
               height: 8,
             ),
-             LineTextField(
+            LineTextField(
               title: "Password",
               hintText: "******",
               controller: txtPassword,
               obscureText: true,
-              right: IconButton(onPressed: (){}, icon: Image.asset("assets/img/password_show.png", width: 25, height: 25, ) ),
+              right: IconButton(
+                  onPressed: () {},
+                  icon: Image.asset(
+                    "assets/img/password_show.png",
+                    width: 25,
+                    height: 25,
+                  )),
             ),
             const SizedBox(
               height: 15,
             ),
             RoundButton(
               onPressed: () {
-                context.push( const SignUpView() );
+                context.push(const SignUpView());
               },
               title: "SIGN IN",
             ),

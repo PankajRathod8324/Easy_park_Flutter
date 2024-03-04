@@ -7,8 +7,7 @@ import 'package:easy_park_app/common/service_call.dart';
 import 'package:easy_park_app/common_widget/image_picker_view.dart';
 import 'package:easy_park_app/common_widget/popup_layout.dart';
 import 'package:easy_park_app/common_widget/round_button.dart';
-import 'package:easy_park_app/view/login/driver_edit_profile_view.dart';
-import 'package:easy_park_app/view/menu/edit_profile_view.dart';
+import 'package:easy_park_app/view/login/add_vehicle_view.dart';
 import 'package:flutter/material.dart';
 
 
@@ -104,9 +103,9 @@ class _ProfileImageViewState extends State<ProfileImageView> {
               RoundButton(
                 onPressed: () {
                   if (ServiceCall.userType == 2) {
-                    context.push(const DriverEditProfileView());
+                    // context.push(const DriverEditProfileView());
                   } else {
-                    context.push(const EditProfileView());
+                    context.push(const AddVehicleView());
                   }
                 },
                 title: "NEXT",

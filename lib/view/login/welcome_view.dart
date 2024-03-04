@@ -1,6 +1,5 @@
 import 'package:easy_park_app/common/color_extension.dart';
 import 'package:easy_park_app/common_widget/round_button.dart';
-import 'package:easy_park_app/view/login/mobile_number_view.dart';
 import 'package:easy_park_app/view/login/sign_in_view.dart';
 import 'package:easy_park_app/view/login/sign_up_view.dart';
 import 'package:flutter/material.dart';
@@ -35,8 +34,8 @@ class _WelcomeViewState extends State<WelcomeView> {
             child: Column(
               children: [
                 Image.asset(
-                  "assets/img/app_logo.png",
-                  width: context.width * 0.25,
+                  "assets/img/img_image_2.png",
+                  width: context.width * 0.75,
                 ),
                 const Spacer(),
 

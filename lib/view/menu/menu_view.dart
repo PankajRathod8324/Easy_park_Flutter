@@ -1,9 +1,7 @@
 import 'package:easy_park_app/common/color_extension.dart';
 import 'package:easy_park_app/common_widget/icon_title_cell.dart';
 import 'package:easy_park_app/common_widget/menu_row.dart';
-import 'package:easy_park_app/view/menu/earning_view.dart';
-import 'package:easy_park_app/view/menu/ratings_view.dart';
-import 'package:easy_park_app/view/menu/service_type_view.dart';
+import 'package:easy_park_app/view/menu/payment_view.dart';
 import 'package:easy_park_app/view/menu/settings_view.dart';
 import 'package:easy_park_app/view/menu/summary_view.dart';
 import 'package:easy_park_app/view/menu/wallet_view.dart';
@@ -70,11 +68,11 @@ class _MenuViewState extends State<MenuView> {
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
                         IconTitleCell(
-                            title: "Earings",
+                            title: "Payments",
                             icon: "assets/img/earnings.png",
                             onPressed: () {
                               context.push(
-                                const EarningView(),
+                                const PaymentView(),
                               );
                             }),
                         InkWell(
@@ -93,36 +91,36 @@ class _MenuViewState extends State<MenuView> {
                                       height: 100,
                                     ),
                                   ),
-                                 InkWell(
-                                          onTap: (){
-                                            context.push(const RatingsView() );
-                                          },
-                                          child: Container(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 8, vertical: 2),
-                                    color: Colors.white,
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: [
-                                        Image.asset(
-                                          "assets/img/rate_profile.png",
-                                          width: 15,
-                                          height: 15,
-                                        ),
-                                        const SizedBox(
-                                          width: 4,
-                                        ),
-                                         Text(
-                                            "4.89",
-                                            style: TextStyle(
-                                              color: TColor.primaryText,
-                                              fontSize: 13,
-                                            ),
-                                          ),
+                                //  InkWell(
+                                //           onTap: (){
+                                //             context.push(const RatingsView() );
+                                //           },
+                                //           child: Container(
+                                //     padding: const EdgeInsets.symmetric(
+                                //         horizontal: 8, vertical: 2),
+                                //     color: Colors.white,
+                                //     child: Row(
+                                //       mainAxisSize: MainAxisSize.min,
+                                //       children: [
+                                //         Image.asset(
+                                //           "assets/img/rate_profile.png",
+                                //           width: 15,
+                                //           height: 15,
+                                //         ),
+                                //         const SizedBox(
+                                //           width: 4,
+                                //         ),
+                                //          Text(
+                                //             "4.89",
+                                //             style: TextStyle(
+                                //               color: TColor.primaryText,
+                                //               fontSize: 13,
+                                //             ),
+                                //           ),
                                         
-                                      ],
-                                    ),
-                                  ),),
+                                //       ],
+                                //     ),
+                                //   ),),
                                 ],
                               ),
                               const SizedBox(
@@ -153,58 +151,58 @@ class _MenuViewState extends State<MenuView> {
               ),
             ),
           ),
-          InkWell(
-            onTap: () {
-              context.push(const ServiceTypeView());
-            },
-            child: Container(
-              color: TColor.lightWhite.withOpacity(0.4),
-              padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Image.asset(
-                    "assets/img/service.png",
-                    width: 40,
-                    height: 40,
-                  ),
-                  const SizedBox(
-                    width: 15,
-                  ),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "Switch Service Type",
-                          style: TextStyle(
-                            color: TColor.primaryText,
-                            fontSize: 18,
-                            fontWeight: FontWeight.w700,
-                          ),
-                        ),
-                        Text(
-                          "Change your service type",
-                          style: TextStyle(
-                            color: TColor.secondaryText,
-                            fontSize: 14,
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                  const SizedBox(
-                    width: 8,
-                  ),
-                  Image.asset(
-                    "assets/img/next.png",
-                    width: 25,
-                    height: 25,
-                  )
-                ],
-              ),
-            ),
-          ),
+          // InkWell(
+          //   onTap: () {
+          //     context.push(const ServiceTypeView());
+          //   },
+          //   child: Container(
+          //     color: TColor.lightWhite.withOpacity(0.4),
+          //     padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+          //     child: Row(
+          //       crossAxisAlignment: CrossAxisAlignment.center,
+          //       children: [
+          //         Image.asset(
+          //           "assets/img/service.png",
+          //           width: 40,
+          //           height: 40,
+          //         ),
+          //         const SizedBox(
+          //           width: 15,
+          //         ),
+          //         Expanded(
+          //           child: Column(
+          //             crossAxisAlignment: CrossAxisAlignment.start,
+          //             children: [
+          //               Text(
+          //                 "Switch Service Type",
+          //                 style: TextStyle(
+          //                   color: TColor.primaryText,
+          //                   fontSize: 18,
+          //                   fontWeight: FontWeight.w700,
+          //                 ),
+          //               ),
+          //               Text(
+          //                 "Change your service type",
+          //                 style: TextStyle(
+          //                   color: TColor.secondaryText,
+          //                   fontSize: 14,
+          //                 ),
+          //               )
+          //             ],
+          //           ),
+          //         ),
+          //         const SizedBox(
+          //           width: 8,
+          //         ),
+          //         Image.asset(
+          //           "assets/img/next.png",
+          //           width: 25,
+          //           height: 25,
+          //         )
+          //       ],
+          //     ),
+          //   ),
+          // ),
           Expanded(
             child: SingleChildScrollView(
               child: Column(
@@ -219,10 +217,7 @@ class _MenuViewState extends State<MenuView> {
                       onPressed: () {
                         context.push(const SummaryView());
                       }),
-                  MenuRow(
-                      title: "My Subscription",
-                      icon: "assets/img/my_subscription.png",
-                      onPressed: () {}),
+                 
                   MenuRow(
                       title: "Notifications",
                       icon: "assets/img/notification.png",

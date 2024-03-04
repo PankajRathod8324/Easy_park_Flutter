@@ -1,6 +1,6 @@
 class ImageConstant {
   // Image folder path
-  static String imagePath = 'assets/images';
+  static String imagePath = 'assets/img';
 
   // iPhone 13 Pro Max - Two images
   static String imgImage2 = '$imagePath/img_image_2.png';

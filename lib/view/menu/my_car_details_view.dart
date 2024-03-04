@@ -1,5 +1,4 @@
 import 'package:easy_park_app/common/color_extension.dart';
-import 'package:easy_park_app/common_widget/car_document_row.dart';
 import 'package:flutter/material.dart';
 
 
@@ -48,39 +47,7 @@ class _MyCarDetailsViewState extends State<MyCarDetailsView> {
           ],
         ),
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            CarDocumentRow(
-                title: "Vehicle Registration",
-                date: "Vehicle Registration",
-                status: "APPROVED",
-                statusColor: Colors.green,
-                onPressed: () {}),
-
-                 CarDocumentRow(
-                title: "Vehicle Insurance",
-                date: "Expires: 31 Dec 2024",
-                status: "APPROVED",
-                statusColor: Colors.green,
-                onPressed: () {}),
-
-                CarDocumentRow(
-                title: "Vehicle Permit",
-                date: "Expires: 31 Dec 2024",
-                status: "APPROVED",
-                statusColor: Colors.green,
-                onPressed: () {}),
-
-                CarDocumentRow(
-                title: "Vehicle Loan EMI Details",
-                date: "Incorrect document type",
-                status: "NOT APPROVED",
-                statusColor: Colors.red,
-                onPressed: () {}),
-          ],
-        ),
-      ),
+      
     );
   }
 }

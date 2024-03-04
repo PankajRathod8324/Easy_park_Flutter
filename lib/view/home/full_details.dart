@@ -1,19 +1,9 @@
-import 'package:easy_park_app/common_widget/utils/size_utils.dart';
-import 'package:easy_park_app/view/menu/menu_view.dart';
+import 'package:easy_park_app/view/home/vehicle.dart';
 import 'package:flutter/material.dart';
-import 'package:easy_park_app/common_widget/chipview_item_widget.dart';
-import 'package:easy_park_app/common_widget/custom_image_view.dart';
-import 'package:easy_park_app/common_widget/image_constant.dart';
-import 'package:easy_park_app/common_widget/theme/custom_text_style.dart';
-import 'package:easy_park_app/common_widget/theme/theme_helper.dart';
-import 'package:easy_park_app/common_widget/widgets/app_bar/appbar_leading_image.dart';
-import 'package:easy_park_app/common_widget/widgets/app_bar/appbar_subtitle.dart';
-import 'package:easy_park_app/common_widget/widgets/app_bar/custom_app_bar.dart';
-import 'package:easy_park_app/view/home/half_details.dart';
 
 class FullDetailsScreen extends StatelessWidget {
-  FullDetailsScreen({super.key});
-  final ThemeData theme = ThemeData();
+  FullDetailsScreen({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -21,10 +11,27 @@ class FullDetailsScreen extends StatelessWidget {
         appBar: _buildAppBar(context),
         body: Container(
           width: double.maxFinite,
-          padding: EdgeInsets.symmetric(horizontal: 26.h, vertical: 14.v),
+          padding: EdgeInsets.symmetric(horizontal: 26, vertical: 14),
           child: Column(
             children: [
-              // Image Container
+              Row(
+                children: [
+                  IconButton(
+                    icon: Icon(Icons.arrow_back),
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                  ),
+                  Text(
+                    "Parking Details",
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(height: 16),
               Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
@@ -33,13 +40,12 @@ class FullDetailsScreen extends StatelessWidget {
                     fit: BoxFit.cover,
                   ),
                 ),
-                height: 176.v,
-                width: 368.h,
+                height: 176,
+                width: 368,
               ),
-              SizedBox(height: 28.v),
-              // Parking Lot Details
+              SizedBox(height: 28),
               Padding(
-                padding: EdgeInsets.only(left: 23.h, right: 28.h),
+                padding: EdgeInsets.only(left: 23, right: 28),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -49,54 +55,109 @@ class FullDetailsScreen extends StatelessWidget {
                         children: [
                           Text(
                             "Parking Lot of San Manolia",
-                            style: theme.textTheme.titleLarge,
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                           Text(
                             "9569, Trantow Courts, San Manolia",
-                            style: CustomTextStyles.titleSmallGray500Medium,
+                            style: TextStyle(fontSize: 16),
                           ),
                         ],
                       ),
                     ),
-                    CustomImageView(
-                      imagePath: ImageConstant.imgBookmarkPrimary,
-                      height: 31.v, // <-- Add the height value here
-                      width: 21.h,
-                      margin:
-                          EdgeInsets.only(left: 60.h, top: 9.v, bottom: 9.v),
+                    Container(
+                      height: 31,
+                      width: 21,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage("assets/imgBookmarkPrimary"),
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                      margin: EdgeInsets.only(left: 60, top: 9, bottom: 9),
                     ),
                   ],
                 ),
               ),
-              SizedBox(height: 37.v),
-              _buildChipView(context),
-              SizedBox(height: 36.v),
-              // Description Section
+              SizedBox(height: 37),
+              Row(
+                children: [
+                  _buildDetailChip("2 km", Icons.location_on),
+                  _buildDetailChip("8 am to 10 am", Icons.access_time),
+                  _buildDetailChip("Valet", Icons.local_parking),
+                ],
+              ),
+              SizedBox(height: 36),
               Align(
                 alignment: Alignment.centerLeft,
                 child: Padding(
-                  padding: EdgeInsets.only(left: 4.h),
+                  padding: EdgeInsets.only(left: 4),
                   child: Text(
                     "Description",
-                    style: theme.textTheme.titleLarge,
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
               ),
-              SizedBox(height: 2.v),
+              SizedBox(height: 2),
               Align(
                 alignment: Alignment.centerLeft,
                 child: SizedBox(
-                  width: 353.h,
+                  width: 353,
                   child: CustomReadMoreText(
                     text:
-                        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining ",
+                        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s...",
                     trimLines: 7,
-                    colorClickableText: theme.colorScheme.primary,
+                    colorClickableText: Colors.blue,
                   ),
                 ),
               ),
-              SizedBox(height: 13.v),
-              // Additional Widgets (e.g., _buildFortyTwo, _buildCancel) go here
+              SizedBox(height: 13),
+              Container(
+                padding: EdgeInsets.all(16),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  color: Colors.grey[200],
+                ),
+                child: Column(
+                  children: [
+                    Text(
+                      "\$2.02 per hour",
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    SizedBox(height: 8),
+                    // Additional details can be added here
+                  ],
+                ),
+              ),
+              SizedBox(height: 16),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  ElevatedButton(
+                    onPressed: () {
+                      // Add cancel button functionality
+                      Navigator.of(context).pop();
+                    },
+                    child: Text("Cancel"),
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      // Add book parking button functionality
+                      Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => VehicleScreen()));
+                    },
+                    child: Text("Book Parking"),
+                  ),
+                ],
+              ),
             ],
           ),
         ),
@@ -104,51 +165,25 @@ class FullDetailsScreen extends StatelessWidget {
     );
   }
 
-  PreferredSizeWidget _buildAppBar(BuildContext context) {
-    return CustomAppBar(
-      leadingWidth: 59.h,
-      leading: AppbarLeadingImage(
-        imagePath: ImageConstant.imgFrameOnprimarycontainer,
-        margin: EdgeInsets.only(left: 33.h, top: 17.v, bottom: 20.v),
-        onTap: () {
-          onTapImage(context);
-        },
-      ),
-      title: AppbarSubtitle(
-        text: "Parking Details",
-        margin: EdgeInsets.only(left: 19.h),
-      ),
+  PreferredSizeWidget? _buildAppBar(BuildContext context) {
+    return AppBar(
+      title: Text("Parking Details"),
     );
   }
 
-  Widget _buildChipView(BuildContext context) {
-    return Wrap(
-      runSpacing: 9.v,
-      spacing: 9.h,
-      children: List<Widget>.generate(3, (index) => ChipviewItemWidget()),
+  Widget _buildDetailChip(String label, IconData icon) {
+    return Chip(
+      avatar: Icon(icon),
+      label: Text(label),
+      backgroundColor: Colors.blue,
     );
   }
+}
 
-  onTapImage(BuildContext context) {
-    showModalBottomSheet(
-      context: context,
-      builder: (_) => HalfDetailsView(),
-      isScrollControlled: true,
-    );
-  }
-
-  onTapCancel(BuildContext context) {
-    showModalBottomSheet(
-      context: context,
-      builder: (_) => HalfDetailsView(),
-      isScrollControlled: true,
-    );
-  }
-
-  onTapBookParking(BuildContext context) {
-    Navigator.of(context)
-        .push(MaterialPageRoute(builder: (context) => MenuView()));
-  }
+void main() {
+  runApp(MaterialApp(
+    home: FullDetailsScreen(),
+  ));
 }
 
 class CustomReadMoreText extends StatefulWidget {
@@ -174,9 +209,12 @@ class _CustomReadMoreTextState extends State<CustomReadMoreText> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          isExpanded ? widget.text : _getTrimmedText(),
-          maxLines: isExpanded ? null : widget.trimLines,
+        Container(
+          margin: EdgeInsets.zero, // Added to remove default margin
+          child: Text(
+            isExpanded ? widget.text : _getTrimmedText(),
+            maxLines: isExpanded ? null : widget.trimLines,
+          ),
         ),
         GestureDetector(
           onTap: () {
