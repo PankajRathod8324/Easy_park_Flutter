@@ -1,5 +1,5 @@
 import 'package:easy_park_app/common/color_extension.dart';
-import 'package:easy_park_app/common_widget/setting_row.dart';
+import 'package:easy_park_app/common_widget/widgets/setting_row.dart';
 import 'package:easy_park_app/view/home/support/support_list_view.dart';
 import 'package:easy_park_app/view/menu/my_profile_view.dart';
 import 'package:easy_park_app/view/menu/my_vehicle_view.dart';

@@ -1,6 +1,6 @@
 import 'package:easy_park_app/common/color_extension.dart';
-import 'package:easy_park_app/common_widget/icon_title_cell.dart';
-import 'package:easy_park_app/common_widget/menu_row.dart';
+import 'package:easy_park_app/common_widget/widgets/icon_title_cell.dart';
+import 'package:easy_park_app/common_widget/widgets/menu_row.dart';
 import 'package:easy_park_app/view/menu/payment_view.dart';
 import 'package:easy_park_app/view/menu/settings_view.dart';
 import 'package:easy_park_app/view/menu/summary_view.dart';

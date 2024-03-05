@@ -1,6 +1,6 @@
 import 'package:easy_park_app/common/color_extension.dart';
-import 'package:easy_park_app/common_widget/line_text_field.dart';
-import 'package:easy_park_app/common_widget/round_button.dart';
+import 'package:easy_park_app/common_widget/widgets/line_text_field.dart';
+import 'package:easy_park_app/common_widget/widgets/round_button.dart';
 import 'package:easy_park_app/view/login/add_vehicle_view.dart';
 import 'package:easy_park_app/view/login/profile_image_view.dart';
 import 'package:fl_country_code_picker/fl_country_code_picker.dart';

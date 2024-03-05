@@ -1,5 +1,5 @@
 import 'package:easy_park_app/common/color_extension.dart';
-import 'package:easy_park_app/common_widget/rating_row.dart';
+import 'package:easy_park_app/common_widget/widgets/rating_row.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';

@@ -1,6 +1,5 @@
+import 'package:easy_park_app/common/color_extension.dart';
 import 'package:flutter/material.dart';
-
-import '../common/color_extension.dart';
 
 class TitleSubtitleRow extends StatelessWidget {
   final String title;

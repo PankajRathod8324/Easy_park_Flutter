@@ -1,5 +1,5 @@
 import 'package:easy_park_app/common/color_extension.dart';
-import 'package:easy_park_app/common_widget/wallet_row.dart';
+import 'package:easy_park_app/common_widget/widgets/wallet_row.dart';
 import 'package:easy_park_app/view/menu/add_momey_view.dart';
 import 'package:flutter/material.dart';
 

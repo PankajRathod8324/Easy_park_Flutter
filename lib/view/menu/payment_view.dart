@@ -1,5 +1,5 @@
 import 'package:easy_park_app/common/color_extension.dart';
-import 'package:easy_park_app/common_widget/price_list_view.dart';
+import 'package:easy_park_app/common_widget/widgets/price_list_view.dart';
 import 'package:flutter/material.dart';
 
 import 'package:fl_chart/fl_chart.dart';

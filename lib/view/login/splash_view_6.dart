@@ -1,5 +1,5 @@
 import 'package:easy_park_app/common_widget/widgets/custom_elevated_button.dart';
-import 'package:easy_park_app/view/login/sign_up_view.dart';
+import 'package:easy_park_app/common_widget/widgets/custom_image_view.dart';
 import 'package:easy_park_app/view/login/welcome_view.dart';
 import 'package:flutter/material.dart';
 import 'package:easy_park_app/common_widget/app_export.dart';

@@ -1,12 +1,12 @@
 import 'dart:io';
 
 import 'package:easy_park_app/common/color_extension.dart';
-import 'package:easy_park_app/common_widget/drop_down_button.dart';
-import 'package:easy_park_app/common_widget/image_picker_view.dart';
+import 'package:easy_park_app/common_widget/widgets/drop_down_button.dart';
+import 'package:easy_park_app/common_widget/widgets/image_picker_view.dart';
 // import 'package:easy_park_app/common_widget/line_text_field.dart';
-import 'package:easy_park_app/common_widget/line_text_field.dart';
-import 'package:easy_park_app/common_widget/popup_layout.dart';
-import 'package:easy_park_app/common_widget/round_button.dart';
+import 'package:easy_park_app/common_widget/widgets/line_text_field.dart';
+import 'package:easy_park_app/common_widget/widgets/popup_layout.dart';
+import 'package:easy_park_app/common_widget/widgets/round_button.dart';
 import 'package:easy_park_app/view/home/home_view.dart';
 import 'package:flutter/material.dart';
 

@@ -1,5 +1,6 @@
-import 'package:easy_park_app/common_widget/title_subtitle_cell.dart';
-import 'package:easy_park_app/common_widget/title_subtitle_row.dart';
+
+import 'package:easy_park_app/common_widget/widgets/title_subtitle_cell.dart';
+import 'package:easy_park_app/common_widget/widgets/title_subtitle_row.dart';
 import 'package:flutter/material.dart';
 import 'package:easy_park_app/common/color_extension.dart';
 

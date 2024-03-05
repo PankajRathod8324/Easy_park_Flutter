@@ -1,6 +1,6 @@
 import 'package:easy_park_app/common/color_extension.dart';
-import 'package:easy_park_app/common_widget/round_button.dart';
-import 'package:easy_park_app/common_widget/tag_button.dart';
+import 'package:easy_park_app/common_widget/widgets/round_button.dart';
+import 'package:easy_park_app/common_widget/widgets/tag_button.dart';
 import 'package:easy_park_app/common_widget/widgets/bank_row.dart';
 import 'package:flutter/material.dart';
 

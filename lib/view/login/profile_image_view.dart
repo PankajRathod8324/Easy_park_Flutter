@@ -4,9 +4,9 @@ import 'package:easy_park_app/common/color_extension.dart';
 import 'package:easy_park_app/common/common_extension.dart';
 import 'package:easy_park_app/common/globs.dart';
 import 'package:easy_park_app/common/service_call.dart';
-import 'package:easy_park_app/common_widget/image_picker_view.dart';
-import 'package:easy_park_app/common_widget/popup_layout.dart';
-import 'package:easy_park_app/common_widget/round_button.dart';
+import 'package:easy_park_app/common_widget/widgets/image_picker_view.dart';
+import 'package:easy_park_app/common_widget/widgets/popup_layout.dart';
+import 'package:easy_park_app/common_widget/widgets/round_button.dart';
 import 'package:easy_park_app/view/login/add_vehicle_view.dart';
 import 'package:flutter/material.dart';
 

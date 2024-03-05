@@ -1,6 +1,6 @@
 import 'package:easy_park_app/common/color_extension.dart';
-import 'package:easy_park_app/common_widget/icon_title_row.dart';
-import 'package:easy_park_app/common_widget/title_subtitle_cell.dart';
+import 'package:easy_park_app/common_widget/widgets/icon_title_row.dart';
+import 'package:easy_park_app/common_widget/widgets/title_subtitle_cell.dart';
 import 'package:easy_park_app/view/menu/edit_profile_view.dart';
 import 'package:easy_park_app/view/menu/ratings_view.dart';
 import 'package:flutter/material.dart';
