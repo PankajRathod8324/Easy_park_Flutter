@@ -1,5 +1,5 @@
 import 'package:easy_park_app/common_widget/widgets/custom_image_view.dart';
-import 'package:easy_park_app/common_widget/image_constant.dart';
+import 'package:easy_park_app/common_widget/widgets/image_constant.dart';
 import 'package:easy_park_app/common_widget/utils/size_utils.dart';
 import 'package:easy_park_app/view/login/splash_view.dart';
 import 'package:flutter/material.dart';

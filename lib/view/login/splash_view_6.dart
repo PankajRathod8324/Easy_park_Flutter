@@ -1,8 +1,12 @@
+import 'package:easy_park_app/common_widget/theme/custom_button_style.dart';
+import 'package:easy_park_app/common_widget/theme/custom_text_style.dart';
+import 'package:easy_park_app/common_widget/theme/theme_helper.dart';
+import 'package:easy_park_app/common_widget/utils/image_constant.dart';
+import 'package:easy_park_app/common_widget/utils/size_utils.dart';
 import 'package:easy_park_app/common_widget/widgets/custom_elevated_button.dart';
 import 'package:easy_park_app/common_widget/widgets/custom_image_view.dart';
 import 'package:easy_park_app/view/login/welcome_view.dart';
 import 'package:flutter/material.dart';
-import 'package:easy_park_app/common_widget/app_export.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class SplashView6Screen extends StatelessWidget {

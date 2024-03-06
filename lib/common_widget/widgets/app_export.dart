@@ -1,4 +1,4 @@
-export 'package:easy_park_app/common_widget/image_constant.dart';
+export 'package:easy_park_app/common_widget/widgets/image_constant.dart';
 export 'package:easy_park_app/common_widget/utils/size_utils.dart';
 export 'package:easy_park_app/common_widget/theme/app_decoration.dart';
 export 'package:easy_park_app/common_widget/theme/custom_text_style.dart';

@@ -1,3 +1,4 @@
+import 'package:easy_park_app/view/home/payment.dart';
 import 'package:easy_park_app/view/home/pick_spot.dart';
 import 'package:flutter/material.dart';
 
@@ -90,7 +91,7 @@ class _BookParkingPageState extends State<BookParkingPage> {
                 _calculateTotalCost();
                 Navigator.of(context).push(
                   MaterialPageRoute(
-                    builder: (context) => PickSpotScreen(
+                    builder: (context) => PaymentScreen(
                       // selectedDate: selectedDate,
                       // selectedStartTime: selectedStartTime,
                       // selectedEndTime: selectedEndTime,

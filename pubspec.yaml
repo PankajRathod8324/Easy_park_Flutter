@@ -75,6 +75,8 @@ dependencies:
   readmore: ^2.2.0
   flutter_svg_provider: ^1.0.7
   qr_flutter: ^4.1.0
+  phonepe_payment_sdk: ^2.0.1
+  crypto: ^3.0.3
   # intl: ^0.18.0
 
 dev_dependencies:

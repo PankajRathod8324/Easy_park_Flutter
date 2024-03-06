@@ -1,5 +1,5 @@
 import 'package:easy_park_app/common_widget/widgets/custom_image_view.dart';
-import 'package:easy_park_app/common_widget/image_constant.dart';
+import 'package:easy_park_app/common_widget/widgets/image_constant.dart';
 import 'package:easy_park_app/common_widget/theme/custom_button_style.dart';
 import 'package:easy_park_app/common_widget/theme/custom_text_style.dart';
 import 'package:easy_park_app/common_widget/theme/theme_helper.dart';

@@ -1,5 +1,5 @@
-import 'package:easy_park_app/common_widget/image_constant.dart';
 import 'package:easy_park_app/common_widget/theme/theme_helper.dart';
+import 'package:easy_park_app/common_widget/utils/image_constant.dart';
 import 'package:easy_park_app/view/home/book_parking_details.dart';
 import 'package:flutter/material.dart';
 
