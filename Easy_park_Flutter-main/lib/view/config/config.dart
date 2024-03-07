@@ -1,0 +1,9 @@
+final url = 'http://192.168.56.1:3000/';
+final registrationOwner = url + "registerOwner";
+final registrationUser = url + "registerUser";
+final loginOwner = url + 'login';
+final loginUser = url + 'loginUser';
+final getUser = url + 'getUser';
+final addVehicle = url + 'addVehicle';
+final getVehicle = url + 'getvehicles';
+final getOwnerdetails = url + 'getownerdetails';
