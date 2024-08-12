@@ -1,5 +1,6 @@
 const UserModel = require('../model/user.model');
 const VehicleModel = require('../model/vehicle.model');
+<<<<<<< HEAD
 const BookingDetails = require('../model/bookingdetails.model');
 const ParkArea = require('../model/parkarea.model');
 const bcrypt = require('bcrypt');
@@ -12,6 +13,18 @@ class UserService {
         throw e;
         }
     }
+=======
+const bcrypt = require('bcrypt');
+class UserService {
+    static async registerUser(email,password,phone,name) {
+        try {
+            const createUser = new UserModel({ email, password, phone,name});
+            return createUser.save();
+        } catch (e) {
+            throw e;
+        }
+    }
+>>>>>>> 4a3e920057e177fd2f5d16412818b39ccd897766
     static async login({email, password}){
         try {
             // Find the owner in the database based on name and password
@@ -60,7 +73,10 @@ class UserService {
               seating,
               model,
               brand,
+<<<<<<< HEAD
               user: user._id, // Assigns the owner
+=======
+>>>>>>> 4a3e920057e177fd2f5d16412818b39ccd897766
           });
 
           await newVehicle.save();
@@ -85,6 +101,7 @@ class UserService {
       throw error;
     }
   }
+<<<<<<< HEAD
   static async getUserDetailsByEmail(email){
     return await UserModel.findOne({ email }).populate('vehicles');
   }
@@ -104,6 +121,8 @@ class UserService {
 static async getParkAreaDetails(parkareaId){
   return await ParkArea.find({ _id: { $in: parkareaId } });
 }
+=======
+>>>>>>> 4a3e920057e177fd2f5d16412818b39ccd897766
 }
 
 module.exports = UserService;

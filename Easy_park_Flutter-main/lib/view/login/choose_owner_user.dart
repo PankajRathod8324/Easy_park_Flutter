@@ -56,6 +56,32 @@ class _ChooseOwnerUserState extends State<ChooseOwnerUser> {
                     },
                   ),
                 ),
+<<<<<<< HEAD
+=======
+                // TextButton(
+                //   onPressed: () {},
+                //   child: Text(
+                //     "SIGN UP",
+                //     style: TextStyle(
+                //       color: TColor.primaryTextW,
+                //       fontSize: 16,
+                //     )
+                //   ),
+                // )
+
+                // TextButton(
+                //   onPressed: () {
+                //      context.push(const SignUpView());
+                //   },
+                //   child: Text(
+                //     "SIGN UP",
+                //     style: TextStyle(
+                //       color: TColor.primaryTextW,
+                //       fontSize: 16,
+                //     ),
+                //   ),
+                // )
+>>>>>>> 4a3e920057e177fd2f5d16412818b39ccd897766
               ],
             ),
           )

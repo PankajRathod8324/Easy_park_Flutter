@@ -64,6 +64,7 @@ class _RegistrationOwnerState extends State<RegistrationOwner> {
   }
 
   Future<void> _uploadImage() async {
+<<<<<<< HEAD
     // Check if all fields are filled
     if (nameController.text.isEmpty ||
         emailController.text.isEmpty ||
@@ -128,6 +129,58 @@ class _RegistrationOwnerState extends State<RegistrationOwner> {
       }
     } catch (e) {
       print('Error during registration: $e');
+=======
+    if (_selectedImage != null) {
+      var request = http.MultipartRequest('POST', Uri.parse(registrationOwner));
+      request.fields['name'] = nameController.text;
+      request.fields['email'] = emailController.text;
+      request.fields['phone'] = phoneController.text;
+      request.fields['password'] = passwordController.text;
+
+      // Example: Adding location information
+      double latitude = 2.0;
+      double longitude = 3.0;
+      List<List<double>> location = [
+        [latitude, longitude]
+      ];
+      String locationString = json.encode(location);
+      request.fields['location'] = locationString;
+
+      request.files.add(
+        await http.MultipartFile.fromPath('image', _selectedImage!.path),
+      );
+
+      try {
+        var response = await request.send();
+        if (response.statusCode == 200) {
+          Fluttertoast.showToast(
+            msg: 'Registration successful',
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.BOTTOM,
+            timeInSecForIosWeb: 1,
+            backgroundColor: Colors.green,
+            textColor: Colors.white,
+            fontSize: 16.0,
+          );
+          print('Registration successful');
+        } else {
+          Fluttertoast.showToast(
+            msg: 'Failed to register. Status code: ${response.statusCode}',
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.BOTTOM,
+            timeInSecForIosWeb: 1,
+            backgroundColor: Colors.red,
+            textColor: Colors.white,
+            fontSize: 16.0,
+          );
+          print('Failed to register. Status code: ${response.statusCode}');
+        }
+      } catch (e) {
+        print('Error during registration: $e');
+      }
+    } else {
+      print('No image selected');
+>>>>>>> 4a3e920057e177fd2f5d16412818b39ccd897766
     }
   }
 

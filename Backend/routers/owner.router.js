@@ -28,6 +28,7 @@ const uploadParkArea = multer({ storage : storageParkArea });
 router.post('/registerOwner', upload.single('image'), OwnerController.register);
 router.post('/login',OwnerController.login);
 router.get('/getownerdetails', OwnerController.getOwnerDetails);
+<<<<<<< HEAD
 router.post('/addParkArea', uploadParkArea.array('images', 3), OwnerController.addParkArea);
 
 router.get('/parkNearMe',OwnerController.getAllParkArea);
@@ -36,6 +37,19 @@ router.put('/updateParkArea', uploadParkArea.array('images', 3),OwnerController.
 router.get('/getParkArea', OwnerController.getParkAreaById);
 router.get('/parkAreasbyemail', OwnerController.getParkAreasByOwnerEmail);
 router.get('/getOwnerBookingDetails' , OwnerController.getOwnerBookingDetails);
+=======
+// router.get('/getCoordinates', OwnerController.getCoordinates);
+router.post('/addParkArea', uploadParkArea.array('images', 3), OwnerController.addParkArea);
+
+router.get('/parkNearMe',OwnerController.getAllParkArea);
+
+// Route to get park areas
+// router.get('/parkAreas', OwnerController.getParkAreas);
+// router.get('/getparkareas',OwnerController.getAllParkAreasByEmail);
+
+// router.get('/halfParkDetails', OwnerController.getHalfParkDeatils);
+// router.get('/getparkareadetails', OwnerController.getParkAreaDetails);
+>>>>>>> 4a3e920057e177fd2f5d16412818b39ccd897766
 module.exports = router;
 
 

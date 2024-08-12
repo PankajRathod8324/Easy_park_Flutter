@@ -7,6 +7,7 @@ const parkAreaSchema = new Schema({
         latitude: { type: Number, required: true },
         longitude: { type: Number, required: true },
     },
+<<<<<<< HEAD
     name: {type: String , required: true},
     pincode: { type: String, required: true },
     images: [{ type: String }], // Assuming you want to store image URLs
@@ -21,6 +22,15 @@ const parkAreaSchema = new Schema({
     reviewdetails: [{type: Schema.Types.ObjectId, ref: 'Review'}], 
     oldbookingdetails: [{ type: Schema.Types.ObjectId, ref: 'BookingDetails' }],
 
+=======
+    pincode: { type: String, required: true },
+    images: [{ type: String }], // Assuming you want to store image URLs
+    phone: { type: String, required: true },
+    slots: { type: Number, default: 0 }, // Number of available slots
+    address: { type: String, required: true },
+    timing: { type: String, required: true },
+    owner: { type: Schema.Types.ObjectId, ref: 'Owner', required: true }, // Reference to Owner model
+>>>>>>> 4a3e920057e177fd2f5d16412818b39ccd897766
 });
 
 const ParkArea = db.model('ParkArea', parkAreaSchema);

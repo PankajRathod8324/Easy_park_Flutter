@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:math';
+<<<<<<< HEAD
 import 'package:collection/collection.dart';
 import 'package:easy_park_app/view/config/config.dart';
 import 'package:easy_park_app/view/home/Full_details.dart';
@@ -8,14 +9,27 @@ import 'package:easy_park_app/view/Profile/my_profile_view.dart';
 import 'package:http/http.dart' as http;
 import 'package:easy_park_app/common/color_extension.dart';
 import 'package:easy_park_app/view/Profile/profile_user.dart';
+=======
+import 'package:easy_park_app/view/config/config.dart';
+import 'package:easy_park_app/view/home/display_json.dart';
+import 'package:http/http.dart' as http;
+import 'package:easy_park_app/common/color_extension.dart';
+import 'package:easy_park_app/view/home/full_details.dart';
+import 'package:easy_park_app/view/home/half_details.dart';
+import 'package:easy_park_app/view/home/vehicle.dart';
+import 'package:easy_park_app/view/menu/menu_view.dart';
+>>>>>>> 4a3e920057e177fd2f5d16412818b39ccd897766
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
+<<<<<<< HEAD
 //Direction Key
 //AIzaSyBPFQgA7MObBlTMV5Si-clGTpujKD_XBFA
+=======
+>>>>>>> 4a3e920057e177fd2f5d16412818b39ccd897766
 void main() {
   runApp(const MyApp());
 }
@@ -27,7 +41,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+<<<<<<< HEAD
       title: 'Park Area',
+=======
+      title: 'Stylish Bottom Navigation Bar Example',
+>>>>>>> 4a3e920057e177fd2f5d16412818b39ccd897766
       theme: ThemeData(
         primarySwatch: Colors.green,
       ),
@@ -47,6 +65,7 @@ class _HomeViewState extends State<HomeView> {
   int selected = 0;
   final controller = PageController();
   late Map<String, dynamic> jsonData;
+<<<<<<< HEAD
 
   String address = '';
   String postalCode = '';
@@ -79,6 +98,13 @@ class _HomeViewState extends State<HomeView> {
     }
   }
 
+=======
+  String address = '';
+  String postalCode = '';
+
+  final Completer<GoogleMapController> _controller = Completer();
+
+>>>>>>> 4a3e920057e177fd2f5d16412818b39ccd897766
   Future<Position> _getUserCurrentLocation() async {
     await Geolocator.requestPermission()
         .then((value) {})
@@ -139,6 +165,7 @@ class _HomeViewState extends State<HomeView> {
       );
 
       if (response.statusCode == 200) {
+<<<<<<< HEAD
         print(response.body);
         jsonData = json.decode(response.body);
         // print(owner);
@@ -150,6 +177,11 @@ class _HomeViewState extends State<HomeView> {
         // print(jsonData[_'id']);
         owner = jsonData['owner'];
         print(parkAreas);
+=======
+        jsonData = json.decode(response.body);
+        print(jsonData);
+        final parkAreas = jsonData['parkAreas'];
+>>>>>>> 4a3e920057e177fd2f5d16412818b39ccd897766
         final markersData = jsonData['markers'];
 
         for (var area in parkAreas) {
@@ -205,7 +237,11 @@ class _HomeViewState extends State<HomeView> {
       _circles.add(Circle(
         circleId: CircleId('circle'),
         center: LatLng(value.latitude, value.longitude),
+<<<<<<< HEAD
         radius: 1100,
+=======
+        radius: 700,
+>>>>>>> 4a3e920057e177fd2f5d16412818b39ccd897766
         strokeWidth: 2,
         strokeColor: Colors.blue,
         fillColor: Colors.blue.withOpacity(0.1),
@@ -216,11 +252,16 @@ class _HomeViewState extends State<HomeView> {
   }
 
   // Function to handle marker tap
+<<<<<<< HEAD
   void _onMarkerTapped(MarkerId markerId) async {
+=======
+  void _onMarkerTapped(MarkerId markerId) {
+>>>>>>> 4a3e920057e177fd2f5d16412818b39ccd897766
     // Find the tapped marker using the markerId
     Marker tappedMarker =
         _markers.firstWhere((marker) => marker.markerId == markerId);
 
+<<<<<<< HEAD
     print(
         'MarkerId------------------------------------: ${tappedMarker.markerId.value}');
     // Check if the tapped marker is not the user's location marker
@@ -250,14 +291,28 @@ class _HomeViewState extends State<HomeView> {
         // Navigator.of(context).push(MaterialPageRoute(
         //   builder: (context) => DisplayJson(matchingParkArea: matchingParkArea}),
         // ));
+=======
+    // Check if the tapped marker is not the user's location marker
+    if (tappedMarker.markerId.value != '1') {
+      if (tappedMarker.markerId.value == '2') {
+        // Handle the tap on the user's location marker (markerId 'SomeId')
+        // You can replace the following line with your navigation logic
+        Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => DisplayJson(jsonData: jsonData),
+        ));
+>>>>>>> 4a3e920057e177fd2f5d16412818b39ccd897766
       } else {
         // Clear existing polyline
         polylineCoordinates.clear();
 
         // Add the user's location and tapped marker positions to the polyline
+<<<<<<< HEAD
         LatLng userLocation = _markers
             .firstWhere((marker) => marker.markerId.value == '2')
             .position;
+=======
+        LatLng userLocation = _markers[3].position;
+>>>>>>> 4a3e920057e177fd2f5d16412818b39ccd897766
         LatLng tappedMarkerLocation = tappedMarker.position;
         polylineCoordinates.add(userLocation);
         polylineCoordinates.add(tappedMarkerLocation);
@@ -344,6 +399,7 @@ class _HomeViewState extends State<HomeView> {
                         child: Stack(
                           alignment: Alignment.bottomRight,
                           children: [
+<<<<<<< HEAD
                             // InkWell(
                             //   onTap: () {
                             //     // context.push(const MenuView());
@@ -365,6 +421,29 @@ class _HomeViewState extends State<HomeView> {
                             //     ),
                             //   ),
                             // ),
+=======
+                            InkWell(
+                              onTap: () {
+                                // context.push(const MenuView());
+                              },
+                              child: Container(
+                                margin: const EdgeInsets.only(top: 30),
+                                padding: const EdgeInsets.all(10),
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(30),
+                                ),
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(20),
+                                  child: SvgPicture.asset(
+                                    "assets/img/search.svg",
+                                    width: 25,
+                                    height: 25,
+                                  ),
+                                ),
+                              ),
+                            ),
+>>>>>>> 4a3e920057e177fd2f5d16412818b39ccd897766
                           ],
                         ),
                       ),
@@ -378,20 +457,41 @@ class _HomeViewState extends State<HomeView> {
       ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: selected,
+<<<<<<< HEAD
         unselectedItemColor: Colors.black,
         selectedItemColor: Colors.green,
         items: const [
           BottomNavigationBarItem(
               icon: Icon(Icons.house_outlined), label: 'Home'),
           BottomNavigationBarItem(
+=======
+        unselectedItemColor: Color.fromARGB(255, 0, 0, 0),
+        selectedItemColor: TColor.primary,
+        items: [
+          BottomNavigationBarItem(
+              icon: Icon(Icons.house_outlined), label: 'Home'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.star_border_rounded), label: 'Favorites'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.style_outlined), label: 'Style'),
+          BottomNavigationBarItem(
+>>>>>>> 4a3e920057e177fd2f5d16412818b39ccd897766
               icon: Icon(Icons.person_outline), label: 'Profile'),
         ],
         onTap: (index) {
           if (index == selected) return;
+<<<<<<< HEAD
           if (index == 1) {
             Navigator.of(context).push(
                 MaterialPageRoute(builder: (context) => ProfileUserView()));
           } else {
+=======
+          if (index == 3) {
+            Navigator.of(context)
+                .push(MaterialPageRoute(builder: (context) => MenuView()));
+          } else {
+            controller.jumpToPage(index);
+>>>>>>> 4a3e920057e177fd2f5d16412818b39ccd897766
             setState(() {
               selected = index;
             });
@@ -402,6 +502,7 @@ class _HomeViewState extends State<HomeView> {
     );
   }
 }
+<<<<<<< HEAD
 
 List<LatLng> _decodePoly(String encoded) {
   List<LatLng> points = [];
@@ -439,3 +540,5 @@ List<LatLng> _decodePoly(String encoded) {
 
   return points;
 }
+=======
+>>>>>>> 4a3e920057e177fd2f5d16412818b39ccd897766

@@ -1,11 +1,14 @@
 const OwnerModel = require('../model/owner.model');
 const OwnerService = require('../services/owner.services');
+<<<<<<< HEAD
 const ParkArea = require('../model/parkarea.model');
 const BookingDetails = require('../model/bookingdetails.model');
 const VehicleModel = require('../model/vehicle.model');
 
 const path = require('path');
 
+=======
+>>>>>>> 4a3e920057e177fd2f5d16412818b39ccd897766
 
 exports.register = async (req, res, next) => {
   try {
@@ -20,7 +23,11 @@ exports.register = async (req, res, next) => {
       return res.status(400).json({ status: false, error: "Name, email, phone, location, and a valid image file are required fields" });
     }
 
+<<<<<<< HEAD
     const image = path.basename(req.file.path);
+=======
+    const image = req.file.path;
+>>>>>>> 4a3e920057e177fd2f5d16412818b39ccd897766
 
     // Assuming you pass the required fields to register an owner
     const successRes = await OwnerService.registerOwner({ name, email, phone, location: { latitude, longitude }, image, password });
@@ -47,9 +54,14 @@ exports.login = async (req, res, next) => {
       return res.status(400).json({ status: 'error', message: 'Name and password are required fields' });
     }
 
+<<<<<<< HEAD
     console.log(email);
     const loginResult = await OwnerService.loginOwner({ email, password });
     
+=======
+    const loginResult = await OwnerService.loginOwner({ email, password });
+
+>>>>>>> 4a3e920057e177fd2f5d16412818b39ccd897766
     // Check the result and send appropriate response
     if (loginResult.status === 'success') {
       // Log success response
@@ -80,8 +92,13 @@ function splitStr(str, separator) {
 }
 exports.getOwnerDetails = async (req, res) => {
   try {
+<<<<<<< HEAD
     const ownerEmail = req.query.email;
     const owner = await OwnerModel.findOne({ email: ownerEmail });
+=======
+    const userEmail = req.query.email;
+    const owner = await OwnerModel.findOne({ email: userEmail });
+>>>>>>> 4a3e920057e177fd2f5d16412818b39ccd897766
     
     if (owner) {
       let temp = owner.image.slice(owner.image.lastIndexOf('/') + 1);
@@ -91,7 +108,10 @@ exports.getOwnerDetails = async (req, res) => {
         location: owner.location,
         phone: owner.phone,
         imageUrl : owner.image,
+<<<<<<< HEAD
         parkAreas : owner.parkingAreas,
+=======
+>>>>>>> 4a3e920057e177fd2f5d16412818b39ccd897766
       });
     } else {
       res.status(404).json({ message: 'Owner not found' });
@@ -106,6 +126,7 @@ exports.getOwnerDetails = async (req, res) => {
 exports.addParkArea = async (req, res) => {
   try {
     const {ownerEmail , latitude , longitude } = req.body;
+<<<<<<< HEAD
     console.log('------------------------');
     console.log(req.body);
     const location = {"latitude" : latitude , "longitude" : longitude } ;
@@ -115,6 +136,15 @@ exports.addParkArea = async (req, res) => {
    
     const parkAreaData = {
       name,
+=======
+    console.log(req.body);
+    const location = {"latitude" : latitude , "longitude" : longitude } ;
+    slots = 1;
+    const { pincode, phone, address, timing } = req.body; 
+    const images = req.files ? req.files.map(file => file.filename) : [];
+   
+    const parkAreaData = {
+>>>>>>> 4a3e920057e177fd2f5d16412818b39ccd897766
       location,
       pincode,
       images,
@@ -122,7 +152,10 @@ exports.addParkArea = async (req, res) => {
       slots,
       address,
       timing,
+<<<<<<< HEAD
       price_per_hr,
+=======
+>>>>>>> 4a3e920057e177fd2f5d16412818b39ccd897766
       // Add other fields as needed
     };
 
@@ -137,9 +170,15 @@ exports.addParkArea = async (req, res) => {
 
 exports.getAllParkArea = async (req, res) => {
   try {
+<<<<<<< HEAD
     // console.log(req.query);
     const {latitude , longitude , postalCode} = req.query;// Assuming you pass the owner's email as a query parameter
     // console.log(postalCode);
+=======
+    console.log(req.query);
+    const {latitude , longitude , postalCode} = req.query;// Assuming you pass the owner's email as a query parameter
+    console.log(postalCode);
+>>>>>>> 4a3e920057e177fd2f5d16412818b39ccd897766
     // Fetch all park areas for the given owner
     const parkAreas = await OwnerService.getAllParkAreas(latitude,longitude,postalCode);
 
@@ -148,12 +187,18 @@ exports.getAllParkArea = async (req, res) => {
       return {
         latitude: parkArea.location.latitude,
         longitude: parkArea.location.longitude,
+<<<<<<< HEAD
         id: parkArea._id,
       };
     });
     console.log('Park Areas :::::');
     console.log(parkAreas);
     console.log(markers);
+=======
+      };
+    });
+
+>>>>>>> 4a3e920057e177fd2f5d16412818b39ccd897766
     res.status(200).json({ parkAreas, markers });
   } catch (error) {
     console.error(error);
@@ -161,6 +206,7 @@ exports.getAllParkArea = async (req, res) => {
   }
 };
 
+<<<<<<< HEAD
 // exports.getParkAreas = async (req, res) => {
 //   try {
 //     const { latitude, longitude, pincode } = req.query; // Assuming latitude, longitude, and pincode are passed as query parameters
@@ -193,6 +239,26 @@ exports.getParkAreaDetails = async (req, res) => {
 //   try {
 //     const ownerEmail = req.query.email;
 //     const owner = await OwnerModel.findOne({ email: ownerEmail });
+=======
+exports.getParkAreas = async (req, res) => {
+  try {
+    const { latitude, longitude, pincode } = req.query; // Assuming latitude, longitude, and pincode are passed as query parameters
+
+    // Call the service function to get park areas
+    const parkAreas = await OwnerService.getParkAreas(latitude, longitude, pincode);
+
+    // Send the response with the retrieved park areas
+    res.json({ parkAreas });
+  } catch (error) {
+    console.error('Error getting park areas:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+};
+// exports.getHalfParkDeatils = async (req, res) => {
+//   try {
+//     const userEmail = req.query.email;
+//     const owner = await OwnerModel.findOne({ email: userEmail });
+>>>>>>> 4a3e920057e177fd2f5d16412818b39ccd897766
 //     const parkAreas = await OwnerService.getAllParkAreas(latitude,longitude,postalCode);
 //     console.log(req.query);
 //     const {name , address} = req.query;// Assuming you pass the owner's email as a query parameter
@@ -213,6 +279,7 @@ exports.getParkAreaDetails = async (req, res) => {
 //     res.status(500).json({ message: 'Internal server error' });
 //   }
 // };
+<<<<<<< HEAD
 exports.updateParkArea = async (req, res) => {
   const id = req.query.id;
   const updateFields = req.body;
@@ -317,3 +384,8 @@ exports.getOwnerBookingDetails = async (req, res) => {
     res.status(500).json({ error: 'Internal server error' });
   }
 };
+=======
+
+
+
+>>>>>>> 4a3e920057e177fd2f5d16412818b39ccd897766

@@ -1,5 +1,6 @@
 const UserModel = require('../model/user.model');
 const UserService = require('../services/user.services');
+<<<<<<< HEAD
 const Bookingdetail = require('../model/bookingdetails.model');
 const path = require('path');
 const VehicleModel = require('../model/vehicle.model');
@@ -9,6 +10,14 @@ exports.register = async (req, res, next) => {
     const { email, password, phone, name } = req.body;
     const profile = path.basename(req.file.path);
     const successRes = await UserService.registerUser(email, password, phone, name, profile);
+=======
+
+exports.register = async (req, res, next) => {
+  try {
+    const { email, password, phone ,name} = req.body;
+
+    const successRes = await UserService.registerUser(email, password, phone,name);
+>>>>>>> 4a3e920057e177fd2f5d16412818b39ccd897766
 
     res.json({ status: true, success: "success login" })
   } catch (err) {
@@ -43,11 +52,19 @@ exports.login = async (req, res, next) => {
   }
 }
 exports.addVehicleToUser = async (req, res) => {
+<<<<<<< HEAD
   const { userEmail, vehicleData } = req.body;
   // const  = req.body; // Assuming your frontend sends JSON data
   console.log(userEmail);
   try {
     const newVehicle = await UserService.addUserVehicle({ userEmail, vehicleData });
+=======
+  const { userEmail,vehicleData } = req.body;
+  // const  = req.body; // Assuming your frontend sends JSON data
+  console.log(userEmail);
+  try {
+    const newVehicle = await UserService.addUserVehicle({userEmail, vehicleData});
+>>>>>>> 4a3e920057e177fd2f5d16412818b39ccd897766
     res.status(200).json(newVehicle);
   } catch (error) {
     console.error(error);
@@ -56,11 +73,19 @@ exports.addVehicleToUser = async (req, res) => {
 };
 
 exports.getusers = async (req, res) => {
+<<<<<<< HEAD
   const email = req.query.email;
   console.log(req.query.email);
   try {
     // Find the user based on the provided email
     const user = await UserModel.findOne({ email: email });
+=======
+  const { userEmail } = req.query;
+
+  try {
+    // Find the user based on the provided email
+    const user = await UserModel.findOne({ email: userEmail });
+>>>>>>> 4a3e920057e177fd2f5d16412818b39ccd897766
 
     if (!user) {
       return res.status(404).json({ error: 'User not found' });
@@ -69,10 +94,13 @@ exports.getusers = async (req, res) => {
     // Return the user details
     res.status(200).json({
       name: user.name,
+<<<<<<< HEAD
       email: user.email,
       vehicles: user.vehicles,
       phone: user.phone,
       profile: user.profile
+=======
+>>>>>>> 4a3e920057e177fd2f5d16412818b39ccd897766
       // Add other user details as needed
     });
   } catch (error) {
@@ -81,7 +109,11 @@ exports.getusers = async (req, res) => {
   }
 };
 
+<<<<<<< HEAD
 exports.getAllVehiclesByEmail = async (req, res, next) => {
+=======
+exports.getAllVehiclesByEmail =  async(req, res, next)=> {
+>>>>>>> 4a3e920057e177fd2f5d16412818b39ccd897766
   const userEmail = req.query.userEmail;
   try {
     const vehicles = await UserService.getAllVehiclesByEmail(userEmail);
@@ -91,6 +123,7 @@ exports.getAllVehiclesByEmail = async (req, res, next) => {
     res.status(500).json({ error: 'Internal Server Error' });
   }
 }
+<<<<<<< HEAD
 
 
 
@@ -236,3 +269,5 @@ exports.removeExpiredBookings = async (req,res) => {
     return 500; 
   }
 };
+=======
+>>>>>>> 4a3e920057e177fd2f5d16412818b39ccd897766

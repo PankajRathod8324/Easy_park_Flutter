@@ -27,7 +27,10 @@ const userSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'Vehicle',
     }],
+<<<<<<< HEAD
     profile: { type: String },
+=======
+>>>>>>> 4a3e920057e177fd2f5d16412818b39ccd897766
 });
 
 userSchema.pre('save', async function (next) {

@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import 'package:easy_park_app/common_widget/custom_elevated_button.dart';
+=======
+import 'package:easy_park_app/common_widget/widgets/custom_elevated_button.dart';
+>>>>>>> 4a3e920057e177fd2f5d16412818b39ccd897766
 import 'package:easy_park_app/view/login/choose_owner_user.dart';
 import 'package:easy_park_app/view/login/welcome_view.dart';
 import 'package:flutter/material.dart';

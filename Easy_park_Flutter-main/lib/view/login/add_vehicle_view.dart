@@ -231,6 +231,7 @@ class _AddVehicleViewState extends State<AddVehicleView> {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String? userEmail = prefs.getString('userEmail');
 
+<<<<<<< HEAD
     String? vehicleObjectId = prefs.getString('vehicleObjectId');
     SharedPreferences prefs1 = await SharedPreferences.getInstance();
     Map<String, dynamic> allPrefs = prefs1.getKeys().fold<Map<String, dynamic>>(
@@ -249,6 +250,9 @@ class _AddVehicleViewState extends State<AddVehicleView> {
       print('Seating: $seating');
       print('User Email: $userEmail');
       print('Vehicle Object ID: $vehicleObjectId');
+=======
+    try {
+>>>>>>> 4a3e920057e177fd2f5d16412818b39ccd897766
       final response = await http.post(
         Uri.parse(addVehicle),
         body: {
@@ -263,6 +267,7 @@ class _AddVehicleViewState extends State<AddVehicleView> {
       );
       print(response.statusCode);
       if (response.statusCode == 200 || response.statusCode == 201) {
+<<<<<<< HEAD
         print('--------------------------------------------------');
         print(userEmail);
         print('-------------------------------------------------');
@@ -271,6 +276,9 @@ class _AddVehicleViewState extends State<AddVehicleView> {
         print('Add Successfully');
         print(allPrefs);
 
+=======
+        print('Add Successfully');
+>>>>>>> 4a3e920057e177fd2f5d16412818b39ccd897766
         Fluttertoast.showToast(
           msg: 'Vehicle added successfully',
           toastLength: Toast.LENGTH_SHORT,
@@ -284,6 +292,7 @@ class _AddVehicleViewState extends State<AddVehicleView> {
           context,
           MaterialPageRoute(builder: (context) => HomeView()),
         );
+<<<<<<< HEAD
       } else if (response.statusCode == 409) {
         // Check if the status code is 409 (Conflict)
         print('Number plate already used');
@@ -300,6 +309,12 @@ class _AddVehicleViewState extends State<AddVehicleView> {
         print('Add failed. Status code: ${response.statusCode}');
         Fluttertoast.showToast(
           msg: 'NUmber Plate Is already Used.',
+=======
+      } else {
+        print('Add failed. Status code: ${response.statusCode}');
+        Fluttertoast.showToast(
+          msg: 'Add failed. Please check your input and try again.',
+>>>>>>> 4a3e920057e177fd2f5d16412818b39ccd897766
           toastLength: Toast.LENGTH_SHORT,
           gravity: ToastGravity.BOTTOM,
           timeInSecForIosWeb: 1,
