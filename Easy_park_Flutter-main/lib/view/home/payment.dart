@@ -185,7 +185,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                       Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => BookParkingPage()));
+                              builder: (context) => BookParkingPage(vehicleData: {}, userData: {},)));
                     } else {
                       // result =
                       // "Flow Complete - status : $status and error : $error ";

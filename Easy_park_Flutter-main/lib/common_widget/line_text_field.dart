@@ -17,10 +17,7 @@ class LineTextField extends StatelessWidget {
     this.keyboardType,
     this.obscureText,
     this.right,
-<<<<<<< HEAD
     String? errorText,
-=======
->>>>>>> 4a3e920057e177fd2f5d16412818b39ccd897766
   }) : super(key: key);
 
   @override

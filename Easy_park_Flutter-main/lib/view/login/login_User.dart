@@ -1,13 +1,8 @@
 import 'package:easy_park_app/view/config/config.dart';
 import 'package:easy_park_app/view/login/add_vehicle_view.dart';
-<<<<<<< HEAD
 // import 'package:easy_park_app/view/login/registrationOwner.dart';
 import 'package:easy_park_app/view/login/registrationUser.dart';
 import 'package:easy_park_app/view/Profile/my_vehicle_view.dart';
-=======
-import 'package:easy_park_app/view/login/profileOwner.dart';
-import 'package:easy_park_app/view/login/registrationUser.dart';
->>>>>>> 4a3e920057e177fd2f5d16412818b39ccd897766
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
@@ -43,7 +38,6 @@ class _LoginUserState extends State<LoginUser> {
     final String email = emailController.text;
     final String password = passwordController.text;
 
-<<<<<<< HEAD
     // Check for email and password validity
     if (!isEmailValid || password.length < 8) {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -54,8 +48,6 @@ class _LoginUserState extends State<LoginUser> {
       return;
     }
 
-=======
->>>>>>> 4a3e920057e177fd2f5d16412818b39ccd897766
     try {
       final response = await http.post(
         Uri.parse(loginUser),
@@ -67,60 +59,36 @@ class _LoginUserState extends State<LoginUser> {
 
       if (response.statusCode == 200) {
         print('Login successful');
-<<<<<<< HEAD
-        // final response2 = await http.get(
-        // Uri.parse(removeOldBookings),
-        // );
-        print(response);
-        // if (response2 == '200') {
-        //   print(response);
-        // }
+
         // Save the email in local storage
         SharedPreferences prefs = await SharedPreferences.getInstance();
         prefs.setString('userEmail', email);
         print('---------------------------------Randome');
         print(email);
-=======
-
-        // Save the email in local storage
-        SharedPreferences prefs = await SharedPreferences.getInstance();
-        prefs.setString('userEmail', email);
->>>>>>> 4a3e920057e177fd2f5d16412818b39ccd897766
 
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(
-<<<<<<< HEAD
             builder: (context) => MyVehicleView(),
-=======
-            builder: (context) => AddVehicleView(),
->>>>>>> 4a3e920057e177fd2f5d16412818b39ccd897766
           ),
         );
       } else {
         print('Login failed. Status code: ${response.statusCode}');
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-<<<<<<< HEAD
             content: Text('Wrong credentials. Please try again.'),
             backgroundColor: Colors.red,
-=======
-            content: Text('Login failed. Please check your credentials.'),
->>>>>>> 4a3e920057e177fd2f5d16412818b39ccd897766
           ),
         );
       }
     } catch (e) {
       print('Error during login: $e');
-<<<<<<< HEAD
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text('An error occurred. Please try again later.'),
           backgroundColor: Colors.red,
         ),
       );
-=======
->>>>>>> 4a3e920057e177fd2f5d16412818b39ccd897766
     }
   }
 
@@ -140,11 +108,7 @@ class _LoginUserState extends State<LoginUser> {
           },
         ),
         title: Text(
-<<<<<<< HEAD
-          'Login For User',
-=======
           'Login To Your Account',
->>>>>>> 4a3e920057e177fd2f5d16412818b39ccd897766
           style: TextStyle(color: Colors.black),
         ),
       ),
@@ -179,10 +143,6 @@ class _LoginUserState extends State<LoginUser> {
                   },
                 ),
               ),
-<<<<<<< HEAD
-=======
-              // obscureText: true,/
->>>>>>> 4a3e920057e177fd2f5d16412818b39ccd897766
               obscureText: !isPasswordVisible,
             ),
             SizedBox(height: 32.0),

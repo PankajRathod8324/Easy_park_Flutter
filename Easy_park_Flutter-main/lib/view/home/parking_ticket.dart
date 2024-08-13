@@ -1,7 +1,6 @@
-<<<<<<< HEAD
-import 'package:easy_park_app/view/home/review_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
+import 'review_screen.dart'; // Adjust the import based on your file structure
 
 class ParkingTicketScreen extends StatefulWidget {
   final Map<String, dynamic> vehicleData;
@@ -10,13 +9,14 @@ class ParkingTicketScreen extends StatefulWidget {
   final String selectedSpot;
   final Map<String, dynamic> userData;
 
-  const ParkingTicketScreen(
-      {super.key,
-      required this.vehicleData,
-      required this.matchingParkArea,
-      required this.bookingData,
-      required this.selectedSpot,
-      required this.userData});
+  const ParkingTicketScreen({
+    Key? key,
+    required this.vehicleData,
+    required this.matchingParkArea,
+    required this.bookingData,
+    required this.selectedSpot,
+    required this.userData,
+  }) : super(key: key);
 
   @override
   _ParkingTicketScreenState createState() => _ParkingTicketScreenState();
@@ -24,8 +24,6 @@ class ParkingTicketScreen extends StatefulWidget {
 
 class _ParkingTicketScreenState extends State<ParkingTicketScreen> {
   late String qrCodeData;
-  String userName = "john";
-  String vehicleNumber = "ckdnkd";
 
   @override
   void initState() {
@@ -34,13 +32,14 @@ class _ParkingTicketScreenState extends State<ParkingTicketScreen> {
     print(widget.matchingParkArea);
     print(widget.selectedSpot);
     print(widget.vehicleData);
-    // generateQRCode('${userName} - ${vehicleNumber}');
+    // Uncomment if QR code functionality is needed
+    // generateQRCode('${widget.userData['name']} - ${widget.vehicleData['brand']}');
   }
 
+  // Uncomment if QR code functionality is needed
   // Future<void> generateQRCode(String data) async {
   //   String barcodeScanRes = await FlutterBarcodeScanner.scanBarcode(
   //       '#ff6666', 'Cancel', true, ScanMode.QR);
-
   //   setState(() {
   //     qrCodeData = barcodeScanRes;
   //   });
@@ -61,17 +60,7 @@ class _ParkingTicketScreenState extends State<ParkingTicketScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              // Padding(
-              //   padding: const EdgeInsets.only(top: 8.0),
-              //   child: Text(
-              //     'Scan this on the scanner machine when you are in the parking lot',
-              //     textAlign: TextAlign.center,
-              //     style: TextStyle(
-              //       fontSize: 16,
-              //       color: Colors.grey,
-              //     ),
-              //   ),
-              // ),
+              // Uncomment if QR code functionality is needed
               // Card(
               //   elevation: 2.0,
               //   child: Padding(
@@ -108,16 +97,16 @@ class _ParkingTicketScreenState extends State<ParkingTicketScreen> {
                       SizedBox(height: 10),
                       ListTile(
                         title: Text('Name:'),
-                        subtitle: Text(widget.userData['name']),
+                        subtitle: Text(widget.userData['name'] ?? 'N/A'),
                       ),
                       ListTile(
                         title: Text('Vehicle:'),
-                        subtitle: Text(widget.vehicleData['brand']),
+                        subtitle: Text(widget.vehicleData['brand'] ?? 'N/A'),
                       ),
                       SizedBox(height: 10),
                       ListTile(
                         title: Text('Park Area:'),
-                        subtitle: Text(widget.matchingParkArea?['name']),
+                        subtitle: Text(widget.matchingParkArea?['name'] ?? 'N/A'),
                       ),
                       ListTile(
                         title: Text('Park Spot:'),
@@ -125,24 +114,23 @@ class _ParkingTicketScreenState extends State<ParkingTicketScreen> {
                       ),
                       ListTile(
                         title: Text('Start Time:'),
-                        subtitle: Text(widget.bookingData['startTime']),
+                        subtitle: Text(widget.bookingData['startTime'] ?? 'N/A'),
                       ),
                       ListTile(
                         title: Text('End Time:'),
-                        subtitle: Text(widget.bookingData['endTime']),
+                        subtitle: Text(widget.bookingData['endTime'] ?? 'N/A'),
                       ),
                       ListTile(
                         title: Text('Date:'),
-                        subtitle: Text(widget.bookingData['bookingDate']),
+                        subtitle: Text(widget.bookingData['bookingDate'] ?? 'N/A'),
                       ),
                       ListTile(
                         title: Text('Phone:'),
-                        subtitle: Text(widget.userData['phone']),
+                        subtitle: Text(widget.userData['phone'] ?? 'N/A'),
                       ),
                       SizedBox(height: 16),
                       TextButton(
                         onPressed: () {
-                          // Implement the continue button action
                           Navigator.push(
                             context,
                             MaterialPageRoute(
@@ -164,102 +152,7 @@ class _ParkingTicketScreenState extends State<ParkingTicketScreen> {
             ],
           ),
         ),
-=======
-import 'package:flutter/material.dart';
-
-void main() {
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('Parking Ticket'),
-          backgroundColor: Colors.black,
-          leading: IconButton(
-            icon: Icon(Icons.arrow_back),
-            onPressed: () {
-              // Handle back button press
-            },
-          ),
-        ),
-        body: ParkingTicketScreen(),
->>>>>>> 4a3e920057e177fd2f5d16412818b39ccd897766
       ),
     );
   }
 }
-<<<<<<< HEAD
-=======
-
-class ParkingTicketScreen extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(16.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Text(
-            'Scan this on the scanner machine when you are in the parking lot',
-            style: TextStyle(fontSize: 16.0),
-          ),
-          SizedBox(height: 20.0),
-          Image.asset('assets/img/paytm.png', width: 200, height: 200),
-          SizedBox(height: 20.0),
-          TicketInfoSection(),
-          SizedBox(height: 20.0),
-          ElevatedButton(
-            onPressed: () {
-              // Navigate to parking lot screen
-            },
-            child: Text('Navigate to Parking Lot'),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget TicketInfoSection() {
-    // Replace the following with your data
-    String name = 'John Doe';
-    String vehicleName = 'Car';
-    String parkingArea = 'Main Parking';
-    String parkingSpot = 'A08';
-    String duration = '2 hours';
-    String date = 'March 10, 2024';
-    String hours = '12:00 PM - 2:00 PM';
-    String phone = '123-456-7890';
-
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        TicketInfoRow('Name', name),
-        TicketInfoRow('Vehicle Name', vehicleName),
-        TicketInfoRow('Parking Area', parkingArea),
-        TicketInfoRow('Parking Spot', parkingSpot),
-        TicketInfoRow('Duration', duration),
-        TicketInfoRow('Date', date),
-        TicketInfoRow('Hours', hours),
-        TicketInfoRow('Phone', phone),
-      ],
-    );
-  }
-
-  Widget TicketInfoRow(String label, String value) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Text(
-          label,
-          style: TextStyle(fontWeight: FontWeight.bold),
-        ),
-        Text(value),
-      ],
-    );
-  }
-}
->>>>>>> 4a3e920057e177fd2f5d16412818b39ccd897766

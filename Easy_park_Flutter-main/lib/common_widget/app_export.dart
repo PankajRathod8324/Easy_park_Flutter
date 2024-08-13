@@ -1,10 +1,7 @@
 export 'package:easy_park_app/common_widget/image_constant.dart';
 export 'package:easy_park_app/common_widget/utils/size_utils.dart';
-<<<<<<< HEAD
 // export 'package:easy_park_app/common_widget/theme/app_decoration.dart';
-=======
 export 'package:easy_park_app/common_widget/theme/app_decoration.dart';
->>>>>>> 4a3e920057e177fd2f5d16412818b39ccd897766
 export 'package:easy_park_app/common_widget/theme/custom_text_style.dart';
 export 'package:easy_park_app/common_widget/theme/theme_helper.dart';
 export 'package:easy_park_app/common_widget/theme/custom_button_style.dart';

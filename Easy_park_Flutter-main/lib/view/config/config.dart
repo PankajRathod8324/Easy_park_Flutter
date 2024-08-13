@@ -1,5 +1,4 @@
 final url = 'http://192.168.0.104:3000/';
-<<<<<<< HEAD
 
 // Endpoints for owner registration and login
 final registrationOwner = url + "registerOwner";
@@ -42,7 +41,6 @@ final getUserBookingDetails = url + 'getUserBookings';
 final cancleBooking = url + 'cancleBooking';
 
 final removeOldBookings = url + 'removeOldBookings';
-=======
 final registrationOwner = url + "registerOwner";
 final registrationUser = url + "registerUser";
 final loginOwner = url + 'login';
@@ -60,4 +58,3 @@ final parkNearMe = url + 'parkNearMe';
 final getOwnerdetails = url + 'getownerdetails';
 final addParkArea = url + 'addParkArea';
 // final getParkAreaDetails = url + 'getParkAreaDetails';
->>>>>>> 4a3e920057e177fd2f5d16412818b39ccd897766

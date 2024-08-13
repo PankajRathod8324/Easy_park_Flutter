@@ -1,12 +1,7 @@
 import 'package:easy_park_app/view/config/config.dart';
 import 'package:easy_park_app/view/owner/home_view_owner.dart';
-<<<<<<< HEAD
 import 'package:easy_park_app/view/owner/profile_owner.dart';
 import 'package:easy_park_app/view/owner/registrationOwner.dart';
-=======
-import 'package:easy_park_app/view/owner/registrationOwner.dart';
-import 'package:easy_park_app/view/login/profileOwner.dart';
->>>>>>> 4a3e920057e177fd2f5d16412818b39ccd897766
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
@@ -61,13 +56,7 @@ class _LoginOwnerState extends State<LoginOwner> {
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(
-            // builder: (context) => ProfileView(userEmail: email),
-
-<<<<<<< HEAD
-            builder: (context) => ProfileOwner(),
-=======
-            builder: (context) => HomeViewOwner(),
->>>>>>> 4a3e920057e177fd2f5d16412818b39ccd897766
+            builder: (context) => HomeViewOwner(), // Navigate to HomeViewOwner after login
           ),
         );
       } else {
@@ -99,11 +88,7 @@ class _LoginOwnerState extends State<LoginOwner> {
           },
         ),
         title: Text(
-<<<<<<< HEAD
-          'Login For Owner',
-=======
           'Login To Your Account',
->>>>>>> 4a3e920057e177fd2f5d16412818b39ccd897766
           style: TextStyle(color: Colors.black),
         ),
       ),
@@ -138,7 +123,6 @@ class _LoginOwnerState extends State<LoginOwner> {
                   },
                 ),
               ),
-              // obscureText: true,
               obscureText: !isPasswordVisible,
             ),
             SizedBox(height: 32.0),

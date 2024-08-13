@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import 'dart:convert';
 import 'dart:io';
 
@@ -8,7 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
-=======
 // import 'dart:convert';
 // import 'dart:io';
 // import 'package:easy_park_app/view/config/config.dart';
@@ -195,10 +193,11 @@ import 'package:image_picker/image_picker.dart';
 import 'dart:convert';
 import 'dart:io';
 import 'package:easy_park_app/view/config/config.dart';
+import 'package:easy_park_app/view/login/login_User.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
->>>>>>> 4a3e920057e177fd2f5d16412818b39ccd897766
+import 'package:image_picker/image_picker.dart';
 
 class RegistrationUser extends StatefulWidget {
   @override
@@ -214,13 +213,9 @@ class _RegistrationUserState extends State<RegistrationUser> {
   bool isPhoneValid = true;
   bool isPasswordValid = true;
   bool isPasswordVisible = false;
-<<<<<<< HEAD
   File? _selectedImage;
   final ImagePicker _imagePicker = ImagePicker();
-=======
->>>>>>> 4a3e920057e177fd2f5d16412818b39ccd897766
 
-  // Validation function for phone number
   String? _validatePhone(String value) {
     bool isValid = value.length == 10;
     setState(() {
@@ -229,7 +224,6 @@ class _RegistrationUserState extends State<RegistrationUser> {
     return isValid ? null : 'Enter a valid 10-digit phone number';
   }
 
-  // Validation function for email
   String? _validateEmail(String value) {
     bool isValid = RegExp(r'^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$')
         .hasMatch(value.trim());
@@ -239,7 +233,6 @@ class _RegistrationUserState extends State<RegistrationUser> {
     return isValid ? null : 'Enter a valid email address';
   }
 
-  // Validation function for password
   String? _validatePassword(String value) {
     bool isValid = value.length >= 8;
     setState(() {
@@ -248,7 +241,6 @@ class _RegistrationUserState extends State<RegistrationUser> {
     return isValid ? null : 'Password must be at least 8 characters long';
   }
 
-<<<<<<< HEAD
   Future<void> _pickImage() async {
     final pickedFile =
         await _imagePicker.pickImage(source: ImageSource.gallery);
@@ -285,7 +277,6 @@ class _RegistrationUserState extends State<RegistrationUser> {
               textColor: Colors.white,
               fontSize: 16.0,
             );
-            print('Registration successful');
             Navigator.pushReplacement(
               context,
               MaterialPageRoute(
@@ -302,13 +293,20 @@ class _RegistrationUserState extends State<RegistrationUser> {
               textColor: Colors.white,
               fontSize: 16.0,
             );
-            print('Failed to register. Status code: ${response.statusCode}');
           }
         } catch (e) {
           print('Error during registration: $e');
         }
       } else {
-        print('No image selected');
+        Fluttertoast.showToast(
+          msg: 'No image selected',
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16.0,
+        );
       }
     } else {
       Fluttertoast.showToast(
@@ -348,38 +346,6 @@ class _RegistrationUserState extends State<RegistrationUser> {
       if (!isPasswordValid) {
         Fluttertoast.showToast(
           msg: 'Password must be at least 8 characters long',
-=======
-  Future<void> _uploadImage() async {
-    final String email = emailController.text;
-    final String password = passwordController.text;
-    final String name = nameController.text;
-    final String phone = phoneController.text;
-
-    try {
-      final response = await http.post(
-        Uri.parse(registrationUser),
-        body: {
-          'email': email,
-          'password': password,
-          'name': name,
-          'phone': phone
-        },
-      );
-      if (response.statusCode == 200) {
-        Fluttertoast.showToast(
-          msg: 'Registration successful',
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.BOTTOM,
-          timeInSecForIosWeb: 1,
-          backgroundColor: Colors.green,
-          textColor: Colors.white,
-          fontSize: 16.0,
-        );
-        print('Registration successful');
-      } else {
-        Fluttertoast.showToast(
-          msg: 'Failed to register. Status code: ${response.statusCode}',
->>>>>>> 4a3e920057e177fd2f5d16412818b39ccd897766
           toastLength: Toast.LENGTH_SHORT,
           gravity: ToastGravity.BOTTOM,
           timeInSecForIosWeb: 1,
@@ -387,14 +353,7 @@ class _RegistrationUserState extends State<RegistrationUser> {
           textColor: Colors.white,
           fontSize: 16.0,
         );
-<<<<<<< HEAD
       }
-=======
-        print('Failed to register. Status code: ${response.statusCode}');
-      }
-    } catch (e) {
-      print('Error during registration: $e');
->>>>>>> 4a3e920057e177fd2f5d16412818b39ccd897766
     }
   }
 
@@ -470,17 +429,12 @@ class _RegistrationUserState extends State<RegistrationUser> {
                       ? null
                       : 'Password must be at least 8 characters long',
                 ),
-<<<<<<< HEAD
-=======
-                // obscureText: true,
->>>>>>> 4a3e920057e177fd2f5d16412818b39ccd897766
                 obscureText: !isPasswordVisible,
                 onChanged: (value) {
                   _validatePassword(value);
                 },
               ),
               SizedBox(height: 20),
-<<<<<<< HEAD
               GestureDetector(
                 onTap: _pickImage,
                 child: _selectedImage != null
@@ -497,13 +451,10 @@ class _RegistrationUserState extends State<RegistrationUser> {
                 onPressed: _pickImage,
                 child: Text('Choose Image'),
               ),
-=======
->>>>>>> 4a3e920057e177fd2f5d16412818b39ccd897766
               ElevatedButton(
                 onPressed: _uploadImage,
                 child: Text('Register'),
               ),
-<<<<<<< HEAD
               SizedBox(height: 20),
               TextButton(
                 onPressed: () {
@@ -512,10 +463,8 @@ class _RegistrationUserState extends State<RegistrationUser> {
                     MaterialPageRoute(builder: (context) => LoginUser()),
                   );
                 },
-                child: Text('Already have an account'),
+                child: Text('Already have an account? Login'),
               ),
-=======
->>>>>>> 4a3e920057e177fd2f5d16412818b39ccd897766
             ],
           ),
         ),

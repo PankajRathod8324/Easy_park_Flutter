@@ -56,8 +56,6 @@ class _ChooseOwnerUserState extends State<ChooseOwnerUser> {
                     },
                   ),
                 ),
-<<<<<<< HEAD
-=======
                 // TextButton(
                 //   onPressed: () {},
                 //   child: Text(
@@ -81,7 +79,6 @@ class _ChooseOwnerUserState extends State<ChooseOwnerUser> {
                 //     ),
                 //   ),
                 // )
->>>>>>> 4a3e920057e177fd2f5d16412818b39ccd897766
               ],
             ),
           )

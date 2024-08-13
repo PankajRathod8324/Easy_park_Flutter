@@ -55,7 +55,7 @@ class _VehicleScreenState extends State<VehicleScreen> {
                   // Navigate to the Book Parking Details page
                   Navigator.of(context).push(
                     MaterialPageRoute(
-                      builder: (context) => BookParkingPage(),
+                      builder: (context) => BookParkingPage(vehicleData: {}, userData: {},),
                     ),
                   );
                 } else {

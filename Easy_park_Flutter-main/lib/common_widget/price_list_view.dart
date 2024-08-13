@@ -1,9 +1,6 @@
 import 'package:easy_park_app/common_widget/title_subtitle_cell.dart';
 import 'package:easy_park_app/common_widget/title_subtitle_row.dart';
-<<<<<<< HEAD
 // import 'package:easy_park_app/common_widget/title_subtitle_row.dart';
-=======
->>>>>>> 4a3e920057e177fd2f5d16412818b39ccd897766
 import 'package:flutter/material.dart';
 import 'package:easy_park_app/common/color_extension.dart';
 

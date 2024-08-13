@@ -1,35 +1,17 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:math';
-<<<<<<< HEAD
-import 'package:collection/collection.dart';
 import 'package:easy_park_app/view/config/config.dart';
-import 'package:easy_park_app/view/home/Full_details.dart';
-import 'package:easy_park_app/view/Profile/my_profile_view.dart';
-import 'package:http/http.dart' as http;
-import 'package:easy_park_app/common/color_extension.dart';
-import 'package:easy_park_app/view/Profile/profile_user.dart';
-=======
-import 'package:easy_park_app/view/config/config.dart';
+import 'package:easy_park_app/view/home/full_details.dart';
 import 'package:easy_park_app/view/home/display_json.dart';
 import 'package:http/http.dart' as http;
 import 'package:easy_park_app/common/color_extension.dart';
-import 'package:easy_park_app/view/home/full_details.dart';
-import 'package:easy_park_app/view/home/half_details.dart';
-import 'package:easy_park_app/view/home/vehicle.dart';
-import 'package:easy_park_app/view/menu/menu_view.dart';
->>>>>>> 4a3e920057e177fd2f5d16412818b39ccd897766
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-<<<<<<< HEAD
-//Direction Key
-//AIzaSyBPFQgA7MObBlTMV5Si-clGTpujKD_XBFA
-=======
->>>>>>> 4a3e920057e177fd2f5d16412818b39ccd897766
 void main() {
   runApp(const MyApp());
 }
@@ -41,11 +23,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-<<<<<<< HEAD
-      title: 'Park Area',
-=======
       title: 'Stylish Bottom Navigation Bar Example',
->>>>>>> 4a3e920057e177fd2f5d16412818b39ccd897766
       theme: ThemeData(
         primarySwatch: Colors.green,
       ),
@@ -65,12 +43,11 @@ class _HomeViewState extends State<HomeView> {
   int selected = 0;
   final controller = PageController();
   late Map<String, dynamic> jsonData;
-<<<<<<< HEAD
 
   String address = '';
   String postalCode = '';
-  var parkAreas = null;
-  var owner = null;
+  var parkAreas;
+  var owner;
   final Completer<GoogleMapController> _controller = Completer();
 
   Future<void> _drawRoute(LatLng origin, LatLng destination) async {
@@ -98,13 +75,6 @@ class _HomeViewState extends State<HomeView> {
     }
   }
 
-=======
-  String address = '';
-  String postalCode = '';
-
-  final Completer<GoogleMapController> _controller = Completer();
-
->>>>>>> 4a3e920057e177fd2f5d16412818b39ccd897766
   Future<Position> _getUserCurrentLocation() async {
     await Geolocator.requestPermission()
         .then((value) {})
@@ -129,7 +99,7 @@ class _HomeViewState extends State<HomeView> {
     Marker(
       markerId: MarkerId('1'),
       position: LatLng(33.6844, 73.0479),
-      infoWindow: InfoWindow(title: 'some Info '),
+      infoWindow: InfoWindow(title: 'Some Info'),
     ),
   ];
 
@@ -142,177 +112,106 @@ class _HomeViewState extends State<HomeView> {
     super.initState();
     _markers.addAll(list);
     loadData();
-
-    // print("ooooooooooooooooooooooooooooooooooooooo" +postalCode);
   }
 
-  loadData() {
-    _getUserCurrentLocation().then((value) async {
-      List<Placemark> placemarks =
-          await placemarkFromCoordinates(value.latitude, value.longitude);
+  loadData() async {
+    Position position = await _getUserCurrentLocation();
+    List<Placemark> placemarks =
+        await placemarkFromCoordinates(position.latitude, position.longitude);
 
-      if (placemarks.isNotEmpty) {
-        Placemark placemark = placemarks.first;
-        setState(() {
-          postalCode = placemark.postalCode ?? '';
-        });
+    if (placemarks.isNotEmpty) {
+      Placemark placemark = placemarks.first;
+      setState(() {
+        postalCode = placemark.postalCode ?? '';
+      });
+    }
+
+    // Fetch data from the backend API based on latitude, longitude, and postal code
+    final response = await http.get(
+      Uri.parse(
+          '$parkNearMe?latitude=${position.latitude}&longitude=${position.longitude}&postalCode=$postalCode'),
+    );
+
+    if (response.statusCode == 200) {
+      jsonData = json.decode(response.body);
+      final parkAreas = jsonData['parkAreas'];
+      final markersData = jsonData['markers'];
+
+      for (var area in parkAreas) {
+        double lat = area['location']['latitude'];
+        double lng = area['location']['longitude'];
+        _markers.add(Marker(
+          markerId: MarkerId(lat.toString() + lng.toString()), // Use a unique ID for each marker
+          position: LatLng(lat, lng),
+          icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueGreen),
+          infoWindow: InfoWindow(title: 'Park Area'),
+        ));
       }
 
-      // Fetch data from the backend API based on latitude, longitude, and postal code
-      final response = await http.get(
-        Uri.parse(
-            '$parkNearMe?latitude=${value.latitude}&longitude=${value.longitude}&postalCode=$postalCode'),
+      for (var marker in markersData) {
+        double lat = marker['latitude'];
+        double lng = marker['longitude'];
+        _markers.add(Marker(
+          markerId: MarkerId(lat.toString() + lng.toString()), // Use a unique ID for each marker
+          position: LatLng(lat, lng),
+          icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueBlue),
+          infoWindow: InfoWindow(title: 'Additional Marker'),
+        ));
+      }
+
+      // Set the camera position to the current location
+      final GoogleMapController controller = await _controller.future;
+      CameraPosition _kGooglePlex = CameraPosition(
+        target: LatLng(position.latitude, position.longitude),
+        zoom: 14,
       );
-
-      if (response.statusCode == 200) {
-<<<<<<< HEAD
-        print(response.body);
-        jsonData = json.decode(response.body);
-        // print(owner);
-        parkAreas = jsonData['parkAreas'];
-        // print('jsonDta');
-        // print(jsonData);
-        print('------------response-body::');
-
-        // print(jsonData[_'id']);
-        owner = jsonData['owner'];
-        print(parkAreas);
-=======
-        jsonData = json.decode(response.body);
-        print(jsonData);
-        final parkAreas = jsonData['parkAreas'];
->>>>>>> 4a3e920057e177fd2f5d16412818b39ccd897766
-        final markersData = jsonData['markers'];
-
-        for (var area in parkAreas) {
-          double lat = area['location']['latitude'];
-          double lng = area['location']['longitude'];
-          _markers.add(Marker(
-            markerId: MarkerId(lat.toString() +
-                lng.toString()), // Use a unique ID for each markerH
-            position: LatLng(lat, lng),
-            icon: BitmapDescriptor.defaultMarkerWithHue(
-              BitmapDescriptor.hueGreen,
-            ),
-            infoWindow: InfoWindow(title: 'Park Area'),
-          ));
-        }
-
-        for (var marker in markersData) {
-          double lat = marker['latitude'];
-          double lng = marker['longitude'];
-          print(LatLng(lat, lng));
-          _markers.add(Marker(
-            markerId: MarkerId(lat.toString() +
-                lng.toString()), // Use a unique ID for each marker
-            position: LatLng(lat, lng),
-            icon: BitmapDescriptor.defaultMarkerWithHue(
-              BitmapDescriptor.hueBlue,
-            ),
-            infoWindow: InfoWindow(title: 'Additional Marker'),
-          ));
-        }
-
-        // Set the camera position to the current location
-        final GoogleMapController controller = await _controller.future;
-        CameraPosition _kGooglePlex = CameraPosition(
-          target: LatLng(value.latitude, value.longitude),
-          zoom: 14,
-        );
-        controller.animateCamera(CameraUpdate.newCameraPosition(_kGooglePlex));
-
-        setState(() {});
-      } else {
-        // Handle error
-        print('Failed to load data from the backend');
-      }
-
-      // Add the current location marker and circle
-      _markers.add(Marker(
-        markerId: const MarkerId('2'),
-        position: LatLng(value.latitude, value.longitude),
-        infoWindow: InfoWindow(title: 'current location'),
-      ));
-
-      _circles.add(Circle(
-        circleId: CircleId('circle'),
-        center: LatLng(value.latitude, value.longitude),
-<<<<<<< HEAD
-        radius: 1100,
-=======
-        radius: 700,
->>>>>>> 4a3e920057e177fd2f5d16412818b39ccd897766
-        strokeWidth: 2,
-        strokeColor: Colors.blue,
-        fillColor: Colors.blue.withOpacity(0.1),
-      ));
+      controller.animateCamera(CameraUpdate.newCameraPosition(_kGooglePlex));
 
       setState(() {});
-    });
+    } else {
+      // Handle error
+      print('Failed to load data from the backend');
+    }
+
+    // Add the current location marker and circle
+    _markers.add(Marker(
+      markerId: const MarkerId('2'),
+      position: LatLng(position.latitude, position.longitude),
+      infoWindow: InfoWindow(title: 'Current Location'),
+    ));
+
+    _circles.add(Circle(
+      circleId: CircleId('circle'),
+      center: LatLng(position.latitude, position.longitude),
+      radius: 700,
+      strokeWidth: 2,
+      strokeColor: Colors.blue,
+      fillColor: Colors.blue.withOpacity(0.1),
+    ));
+
+    setState(() {});
   }
 
-  // Function to handle marker tap
-<<<<<<< HEAD
-  void _onMarkerTapped(MarkerId markerId) async {
-=======
   void _onMarkerTapped(MarkerId markerId) {
->>>>>>> 4a3e920057e177fd2f5d16412818b39ccd897766
     // Find the tapped marker using the markerId
     Marker tappedMarker =
         _markers.firstWhere((marker) => marker.markerId == markerId);
 
-<<<<<<< HEAD
-    print(
-        'MarkerId------------------------------------: ${tappedMarker.markerId.value}');
-    // Check if the tapped marker is not the user's location marker
-    if (tappedMarker.markerId.value != '1') {
-      if (tappedMarker.markerId.value != '2') {
-        Marker tappedMarker =
-            _markers.firstWhere((marker) => marker.markerId == markerId);
-        double tappedMarkerLatitude = tappedMarker.position.latitude;
-        double tappedMarkerLongitude = tappedMarker.position.longitude;
-
-        // Find the park area in jsonData with the same latitude and longitude as the tapped marker
-        var matchingParkArea = parkAreas.firstWhere((area) =>
-            area['location']['latitude'] == tappedMarkerLatitude &&
-            area['location']['longitude'] == tappedMarkerLongitude);
-
-        // Print the details of the matching park area
-        print(
-            'Details of matching park area--------------------------------------------------------:');
-        print(matchingParkArea);
-        // polylineCoordinates.clear();
-
-        Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => FullDetails(
-            matchingParkArea: matchingParkArea,
-          ),
-        ));
-        // Navigator.of(context).push(MaterialPageRoute(
-        //   builder: (context) => DisplayJson(matchingParkArea: matchingParkArea}),
-        // ));
-=======
     // Check if the tapped marker is not the user's location marker
     if (tappedMarker.markerId.value != '1') {
       if (tappedMarker.markerId.value == '2') {
-        // Handle the tap on the user's location marker (markerId 'SomeId')
-        // You can replace the following line with your navigation logic
+        // Handle the tap on the user's location marker
         Navigator.of(context).push(MaterialPageRoute(
           builder: (context) => DisplayJson(jsonData: jsonData),
         ));
->>>>>>> 4a3e920057e177fd2f5d16412818b39ccd897766
       } else {
         // Clear existing polyline
         polylineCoordinates.clear();
 
         // Add the user's location and tapped marker positions to the polyline
-<<<<<<< HEAD
         LatLng userLocation = _markers
             .firstWhere((marker) => marker.markerId.value == '2')
             .position;
-=======
-        LatLng userLocation = _markers[3].position;
->>>>>>> 4a3e920057e177fd2f5d16412818b39ccd897766
         LatLng tappedMarkerLocation = tappedMarker.position;
         polylineCoordinates.add(userLocation);
         polylineCoordinates.add(tappedMarkerLocation);
@@ -378,167 +277,56 @@ class _HomeViewState extends State<HomeView> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                // Additional widgets if needed
-              ],
-            ),
-          ),
-          SafeArea(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(15),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      const SizedBox(
-                        width: 60,
-                      ),
-                      SizedBox(
-                        width: 60,
-                        child: Stack(
-                          alignment: Alignment.bottomRight,
-                          children: [
-<<<<<<< HEAD
-                            // InkWell(
-                            //   onTap: () {
-                            //     // context.push(const MenuView());
-                            //   },
-                            //   child: Container(
-                            //     margin: const EdgeInsets.only(top: 30),
-                            //     padding: const EdgeInsets.all(10),
-                            //     decoration: BoxDecoration(
-                            //       color: Colors.white,
-                            //       borderRadius: BorderRadius.circular(30),
-                            //     ),
-                            //     child: ClipRRect(
-                            //       borderRadius: BorderRadius.circular(20),
-                            //       child: SvgPicture.asset(
-                            //         "assets/img/search.svg",
-                            //         width: 25,
-                            //         height: 25,
-                            //       ),
-                            //     ),
-                            //   ),
-                            // ),
-=======
-                            InkWell(
-                              onTap: () {
-                                // context.push(const MenuView());
-                              },
-                              child: Container(
-                                margin: const EdgeInsets.only(top: 30),
-                                padding: const EdgeInsets.all(10),
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(30),
-                                ),
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(20),
-                                  child: SvgPicture.asset(
-                                    "assets/img/search.svg",
-                                    width: 25,
-                                    height: 25,
-                                  ),
-                                ),
-                              ),
-                            ),
->>>>>>> 4a3e920057e177fd2f5d16412818b39ccd897766
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                )
+                // Add any additional widgets here
               ],
             ),
           ),
         ],
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: selected,
-<<<<<<< HEAD
-        unselectedItemColor: Colors.black,
-        selectedItemColor: Colors.green,
-        items: const [
-          BottomNavigationBarItem(
-              icon: Icon(Icons.house_outlined), label: 'Home'),
-          BottomNavigationBarItem(
-=======
-        unselectedItemColor: Color.fromARGB(255, 0, 0, 0),
-        selectedItemColor: TColor.primary,
-        items: [
-          BottomNavigationBarItem(
-              icon: Icon(Icons.house_outlined), label: 'Home'),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.star_border_rounded), label: 'Favorites'),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.style_outlined), label: 'Style'),
-          BottomNavigationBarItem(
->>>>>>> 4a3e920057e177fd2f5d16412818b39ccd897766
-              icon: Icon(Icons.person_outline), label: 'Profile'),
-        ],
-        onTap: (index) {
-          if (index == selected) return;
-<<<<<<< HEAD
-          if (index == 1) {
-            Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => ProfileUserView()));
-          } else {
-=======
-          if (index == 3) {
-            Navigator.of(context)
-                .push(MaterialPageRoute(builder: (context) => MenuView()));
-          } else {
-            controller.jumpToPage(index);
->>>>>>> 4a3e920057e177fd2f5d16412818b39ccd897766
-            setState(() {
-              selected = index;
-            });
-          }
-        },
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
   }
-}
-<<<<<<< HEAD
 
-List<LatLng> _decodePoly(String encoded) {
-  List<LatLng> points = [];
-  int index = 0, len = encoded.length;
-  int lat = 0, lng = 0;
+  List<LatLng> _decodePoly(String encoded) {
+    List<LatLng> poly = [];
+    int index = 0;
+    int len = encoded.length;
+    int lat = 0;
+    int lng = 0;
 
-  while (index < len) {
-    int b, shift = 0, result = 0;
+    while (index < len) {
+      int b;
+      int shift = 0;
+      int result = 0;
 
-    do {
-      b = encoded.codeUnitAt(index++) - 63;
-      result |= (b & 0x1F) << shift;
-      shift += 5;
-    } while (b >= 0x20);
+      do {
+        b = encoded.codeUnitAt(index) - 63;
+        index++;
+        result |= (b & 0x1f) << shift;
+        shift += 5;
+      } while (b >= 0x20);
 
-    int dlat = ((result & 1) != 0 ? ~(result >> 1) : (result >> 1));
-    lat += dlat;
+      int dlat = (result & 1) != 0 ? ~(result >> 1) : (result >> 1);
+      lat += dlat;
 
-    shift = 0;
-    result = 0;
+      shift = 0;
+      result = 0;
 
-    do {
-      b = encoded.codeUnitAt(index++) - 63;
-      result |= (b & 0x1F) << shift;
-      shift += 5;
-    } while (b >= 0x20);
+      do {
+        b = encoded.codeUnitAt(index) - 63;
+        index++;
+        result |= (b & 0x1f) << shift;
+        shift += 5;
+      } while (b >= 0x20);
 
-    int dlng = ((result & 1) != 0 ? ~(result >> 1) : (result >> 1));
-    lng += dlng;
+      int dlng = (result & 1) != 0 ? ~(result >> 1) : (result >> 1);
+      lng += dlng;
 
-    double latitude = lat / 1E5;
-    double longitude = lng / 1E5;
-    points.add(LatLng(latitude, longitude));
+      poly.add(LatLng(
+        (lat / 1E5).toDouble(),
+        (lng / 1E5).toDouble(),
+      ));
+    }
+
+    return poly;
   }
-
-  return points;
 }
-=======
->>>>>>> 4a3e920057e177fd2f5d16412818b39ccd897766
