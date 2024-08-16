@@ -1,24 +1,16 @@
-<<<<<<< HEAD
-const mongoose = require('mongoose'); // Add this line
-
-=======
->>>>>>> 4a3e920057e177fd2f5d16412818b39ccd897766
+const mongoose = require('mongoose');
 const OwnerModel = require('../model/owner.model');
 const bcrypt = require('bcrypt');
 const parkAreaModel = require('../model/parkarea.model');
-class OwnerService {
 
-<<<<<<< HEAD
+class OwnerService {
   static calculateDistance(lat1, lon1, lat2, lon2) {
-=======
-   static calculateDistance(lat1, lon1, lat2, lon2) {
->>>>>>> 4a3e920057e177fd2f5d16412818b39ccd897766
     const R = 6371; // Radius of the Earth in kilometers
-    const dLat = deg2rad(lat2 - lat1);
-    const dLon = deg2rad(lon2 - lon1);
+    const dLat = this.deg2rad(lat2 - lat1);
+    const dLon = this.deg2rad(lon2 - lon1);
     const a =
       Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-      Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * Math.sin(dLon / 2) * Math.sin(dLon / 2);
+      Math.cos(this.deg2rad(lat1)) * Math.cos(this.deg2rad(lat2)) * Math.sin(dLon / 2) * Math.sin(dLon / 2);
     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
     const distance = R * c; // Distance in kilometers
 
@@ -29,20 +21,16 @@ class OwnerService {
   static deg2rad(deg) {
     return deg * (Math.PI / 180);
   }
+
   static async registerOwner({ name, email, phone, location, image, password }) {
     try {
-      // Assuming location is an object with latitude and longitude properties
       const { latitude, longitude } = location;
 
       const createOwner = new OwnerModel({
         name,
         email,
         phone,
-<<<<<<< HEAD
-        // location: { latitude, longitude }, // Save location as an object
-=======
         location: { latitude, longitude }, // Save location as an object
->>>>>>> 4a3e920057e177fd2f5d16412818b39ccd897766
         image,
         password,
       });
@@ -53,204 +41,99 @@ class OwnerService {
       throw e;
     }
   }
+
   static async loginOwner({ email, password }) {
     try {
-      // Find the owner in the database based on name and password
       const owner = await OwnerModel.findOne({ email });
 
       if (owner) {
-        // Compare the provided password with the hashed password in the database
         const passwordMatch = await bcrypt.compare(password, owner.password);
 
         if (passwordMatch) {
-          // Successful login
           return { status: 'success', message: 'Login successful' };
         } else {
-          // Password doesn't match
           return { status: 'error', message: 'Invalid credentials' };
         }
       } else {
-        // Owner not found
         return { status: 'error', message: 'Invalid credentials' };
       }
     } catch (error) {
-      // Handle any errors
       console.error('Error during login:', error);
-      throw error; // You may want to handle this differently based on your use case
+      throw error;
     }
   }
+
   static async addParkArea(ownerEmail, parkAreaData) {
     try {
-      // Find the owner based on the provided email
       const owner = await OwnerModel.findOne({ email: ownerEmail });
-<<<<<<< HEAD
 
       if (!owner) {
         throw new Error('Owner not found');
       }
 
-      // Add owner's _id to parkAreaData
       parkAreaData.owner = owner._id;
 
-      // Create a new park area
       const parkArea = new parkAreaModel(parkAreaData);
       await parkArea.save();
 
-      // Associate the park area with the owner
       owner.parkingAreas.push(parkArea._id);
       await owner.save();
 
-=======
-  
-      if (!owner) {
-        throw new Error('Owner not found');
-      }
-  
-      // Add owner's _id to parkAreaData
-      parkAreaData.owner = owner._id;
-  
-      // Create a new park area
-      const parkArea = new parkAreaModel(parkAreaData);
-      await parkArea.save();
-  
-      // Associate the park area with the owner
-      owner.parkingAreas.push(parkArea._id);
-      await owner.save();
-  
->>>>>>> 4a3e920057e177fd2f5d16412818b39ccd897766
       return parkArea;
     } catch (error) {
       throw error;
     }
   }
-<<<<<<< HEAD
-
-=======
-  
->>>>>>> 4a3e920057e177fd2f5d16412818b39ccd897766
 
   static async getAllParkAreas(latitude, longitude, pincode) {
     try {
-      // Find park areas in the database based on the provided pincode
       const parkAreas = await parkAreaModel.find({ pincode }).populate('owner');
-      console.log(parkAreas);
-      // Filter park areas based on geographical coordinates
-      const filteredParkAreas = parkAreas.map((parkArea) => {
-        // Calculate the distance between the provided coordinates and the park area coordinates
-        // const distance = calculateDistanee(latitude, longitude, parkArea.location.latitude, parkArea.location.longitude);
-        const distance = 200;
-        // Include the park area in the result only if it's within a certain distance (e.g., 700 meters)
-<<<<<<< HEAD
-        if (distance <= 2700) {
-          return {
-            location: parkArea.location,
-            name: parkArea.name,
-=======
-        if (distance <= 700) {
-          return {
-            location: parkArea.location,
->>>>>>> 4a3e920057e177fd2f5d16412818b39ccd897766
-            pincode: parkArea.pincode,
-            images: parkArea.images,
-            phone: parkArea.phone,
-            slots: parkArea.slots,
-            address: parkArea.address,
-            timing: parkArea.timing,
-<<<<<<< HEAD
-            id: parkArea._id,
-            // Add other fields as needed
-            price_per_hr: parkArea.price_per_hr,
-            owner: parkArea.owner, // Include owner information
-            booked_slot: parkArea.boocked_slots,
 
-            // Include latitude and longitude
-            latitude: parkArea.location.latitude,
-            longitude: parkArea.location.longitude,
-            reviewdetails:parkArea.reviewdetails,
-          };
-        }
+      const filteredParkAreas = parkAreas
+        .map((parkArea) => {
+          const distance = this.calculateDistance(latitude, longitude, parkArea.location.latitude, parkArea.location.longitude);
 
-        return null; // Exclude the park area from the result if it's too far away
-      }).filter(Boolean); // Remove null values from the result array
+          if (distance <= 2700) {
+            return {
+              location: parkArea.location,
+              name: parkArea.name,
+              pincode: parkArea.pincode,
+              images: parkArea.images,
+              phone: parkArea.phone,
+              slots: parkArea.slots,
+              address: parkArea.address,
+              timing: parkArea.timing,
+              id: parkArea._id,
+              price_per_hr: parkArea.price_per_hr,
+              owner: parkArea.owner,
+              booked_slots: parkArea.booked_slots,
+              latitude: parkArea.location.latitude,
+              longitude: parkArea.location.longitude,
+              reviewdetails: parkArea.reviewdetails,
+            };
+          }
 
-=======
-            // Add other fields as needed
-            owner: parkArea.owner, // Include owner information
-  
-            // Include latitude and longitude
-            latitude: parkArea.location.latitude,
-            longitude: parkArea.location.longitude,
-          };
-        }
-  
-        return null; // Exclude the park area from the result if it's too far away
-      }).filter(Boolean); // Remove null values from the result array
-  
->>>>>>> 4a3e920057e177fd2f5d16412818b39ccd897766
+          return null;
+        })
+        .filter(Boolean);
+
       return filteredParkAreas;
     } catch (error) {
       throw error;
     }
   }
-<<<<<<< HEAD
 
-
-
-=======
-  
-  
-  
->>>>>>> 4a3e920057e177fd2f5d16412818b39ccd897766
-  // Helper function to calculate the distance between two sets of coordinates
-  calculateDistance(lat1, lon1, lat2, lon2) {
-    const R = 6371; // Radius of the Earth in kilometers
-    const dLat = deg2rad(lat2 - lat1);
-    const dLon = deg2rad(lon2 - lon1);
-    const a =
-      Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-      Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * Math.sin(dLon / 2) * Math.sin(dLon / 2);
-    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-    const distance = R * c; // Distance in kilometers
-<<<<<<< HEAD
-
-    // Increase the circle size by multiplying the distance by a scaling factor
-    const scaledDistance = distance * 1000 * 3; // Adjust the scaling factor as needed
-
-    return scaledDistance;  // Convert distance to meters
-  }
-
-=======
-  
-    return distance * 1000; // Convert distance to meters
-  }
-  
->>>>>>> 4a3e920057e177fd2f5d16412818b39ccd897766
-  // Helper function to convert degrees to radians
-  deg2rad(deg) {
-    return deg * (Math.PI / 180);
-  }
-  // static async getOwnerDetailsByEmail(email) {
-  //   try {
-  //     const owner = await OwnerModel.findOne({ email });
-  //     return owner;
-  //   } catch (error) {
-  //     throw error;
-  //   }
-  // }
-<<<<<<< HEAD
   static async getParkAreaDetailsById(parkAreaId) {
     try {
-      // Check if the provided parkAreaId is a valid ObjectId
       if (!mongoose.Types.ObjectId.isValid(parkAreaId)) {
         throw new Error('Invalid park area ID');
       }
-  
-      // Find the park area in the database based on the provided parkAreaId
+
       const parkArea = await parkAreaModel.findById(parkAreaId).populate('owner');
       if (!parkArea) {
         throw new Error('Park area not found');
       }
-  
+
       return {
         location: parkArea.location,
         name: parkArea.name,
@@ -261,20 +144,14 @@ class OwnerService {
         address: parkArea.address,
         timing: parkArea.timing,
         price_per_hr: parkArea.price_per_hr,
-        owner: parkArea.owner, // Include owner information
+        owner: parkArea.owner,
         latitude: parkArea.location.latitude,
         longitude: parkArea.location.longitude,
-        
       };
     } catch (error) {
       throw error;
     }
   }
-  
-  
-=======
->>>>>>> 4a3e920057e177fd2f5d16412818b39ccd897766
 }
 
 module.exports = OwnerService;
-
